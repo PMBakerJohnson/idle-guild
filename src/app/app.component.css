@@ -1,0 +1,22 @@
+.play-area {
+	min-height: 30rem;
+}
+
+.play-area>div {
+	border: solid;
+	border-width: 1px;
+	border-color: black;
+	padding: 1rem;
+}
+
+.body-content {
+	margin: 1rem;
+	width: calc(100% - 2rem);
+}
+
+.title-row {
+	border: solid;
+	border-width: 1px 1px 0px 1px;
+	border-color: black;
+	padding: 2rem;
+}

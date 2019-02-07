@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ResourcesService } from '../resources.service';
 
 @Component({
   selector: 'app-clickable',
@@ -7,14 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClickableComponent implements OnInit {
 
-  someResource = 0;
+  constructor(public resourcesService: ResourcesService) { }
 
-  generateAGenericResource(): void {
-    this.someResource = this.someResource + 1;
-  };
-
-  constructor() { }
-
+	earnGold = function () {
+		this.resourcesService.gold.produce();
+	}
   ngOnInit() {
   }
 

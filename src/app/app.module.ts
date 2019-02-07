@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ClickableComponent } from './clickable/clickable.component';
+import { ResourceDisplayComponent } from './resource-display/resource-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClickableComponent
+    ClickableComponent,
+    ResourceDisplayComponent
   ],
   imports: [
     BrowserModule

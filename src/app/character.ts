@@ -1,3 +1,6 @@
 export class Character {
-	name: string
+	name: string;
+	profession: string;
+	sex: string;
+
 }

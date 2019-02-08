@@ -12,7 +12,8 @@ export class ResourcesService {
 		this.establishTicker();
 	}
 
-	resources = [new Resource('gold', 500, 1, 1, 1)]
+	resources = [
+		new Resource('gold', 500, 1, 1)]
 
 	getResources(): Observable<Resource[]> {
 		return of(this.resources);
@@ -24,6 +25,7 @@ export class ResourcesService {
 			for(let resource of this.resources) {
 				resource.accrue(speedMultiplier);
 			}
+			this.getResources();
 		}
 	}
 

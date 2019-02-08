@@ -10,9 +10,6 @@ export class ClickableComponent implements OnInit {
 
   constructor(public resourcesService: ResourcesService) { }
 
-	earnGold = function () {
-		this.resourcesService.gold.produce();
-	}
   ngOnInit() {
   }
 

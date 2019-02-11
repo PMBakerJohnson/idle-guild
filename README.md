@@ -2,26 +2,24 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
 
-## Development server
+The basic conceit that I'm going for is that you, the player character, are an aspiring manager of an adventurer's guild in a D&D inspired fantasy setting. You'll have facilities created to support various adventurer's and other support staff that you'll hire, and can expand as you see fit.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Current features
 
-## Code scaffolding
+Right now, you can click a button and earn gold that will persist as long as you have that tab open. Plus you can toggle between two different tabs. Impressive, I know. Technically there is an idle loop ticking in the background but the default is that nothing gets generated per tick yet.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Current effort
 
-## Build
+I'm adding in features to buy your own buildings, which will for the moment, generate gold on their own. Eventually they won't produce anything, just give you the ability to hire employees.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Up next, in approximate order of importance
 
-## Running unit tests
+- Persist player progress between sessions. Needs to save using HTML5 local storage. Plus maybe I can export a string for the user, if they want it?
+- Add employees with associated professions that require buildings that produce gold on their own, and set buildings back to not producing anything.
+- Remove clickable thing. I don't think that's going to have a place in the future.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Roadmap ???
+  0.1: Proof of concept
+    - Just enough to convince me I can do this. Has a resource, an idle loop, a way to persist data, and purchaseable objects that increase the amount of any given resource you produce.
+  0.2: People
+    - Add hireable employees that draw a wage and produce finances;

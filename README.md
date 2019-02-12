@@ -19,7 +19,7 @@ I'm adding in features to buy your own buildings, which will for the moment, gen
 - Remove clickable thing. I don't think that's going to have a place in the future.
 
 ## Roadmap ???
-	0.1: Proof of concept
-		- Just enough to convince me I can do this. Has a resource, an idle loop, a way to persist data, and purchaseable objects that increase the amount of any given resource you produce.
-	0.2: People
-		- Add hireable employees that draw a wage and produce finances;
+0.1: Proof of concept
+-    Just enough to convince me I can do this. Has a resource, an idle loop, a way to persist data, and purchaseable objects that increase the amount of any given resource you produce.
+0.2: People
+-    Add hireable employees that draw a wage and produce finances;

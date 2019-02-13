@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resource } from './objects/resource';
+import { Resource, RESOURCES } from './objects/resource';
 import { TickerService } from './ticker.service';
 import { Observable, of } from 'rxjs';
 
@@ -12,8 +12,7 @@ export class ResourcesService {
 		this.establishTicker();
 	}
 
-	resources = [
-		new Resource('gold', 500, 1, 1)]
+	resources = RESOURCES;
 
 	getResources(): Observable<Resource[]> {
 		return of(this.resources);

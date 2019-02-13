@@ -1,0 +1,19 @@
+<ul class="nav nav-tabs" id="purchaseablesTab" role="tablist">
+	<li class="nav-item">
+		<a class="nav-link" [class.active]="selectedTab === 'buildings'" (click)="selectedTab = 'buildings'">Buildings</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" [class.active]="selectedTab === 'people'" (click)="selectedTab = 'people'">People</a>
+	</li>
+</ul>
+<div [ngSwitch]="selectedTab">
+	<div *ngSwitchCase="'buildings'">
+		<app-buildings-shop></app-buildings-shop>
+	</div>
+	<div *ngSwitchCase="'people'">
+		<app-people-shop></app-people-shop>
+	</div>
+	<div *ngSwitchDefault>
+		This means this area is broken. That's unfortunate. :/
+	</div>
+</div>

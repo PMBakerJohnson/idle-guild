@@ -1,3 +1,6 @@
-<p>
-  buildings-shop works!
-</p>
+<div *ngFor="let building of buildings" (click)="purchaseBuilding(building)" >
+  Name: {{ building.name }}
+  {{ building.type | titlecase }} <br />
+  Costs:{{ building.cost }} {{ building.purchaseWith }} <br />
+  Produces:{{ building.production }} {{ building.productionType }}
+</div>

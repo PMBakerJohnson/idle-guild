@@ -21,8 +21,13 @@ export class Resource {
 	produce(amountToProduce = this.clickValue) {
 		this.quantity = this.quantity + (amountToProduce * this.multiplier);
 	};
-	spend(amountToSpend) {
-		this.quantity = this.quantity - amountToSpend;
+	spend(amountToSpend): boolean {
+		let couldPurchase: boolean = false;
+		if(this.quantity > amountToSpend) {
+			this.quantity = this.quantity - amountToSpend;
+			couldPurchase = true;
+		}
+		return couldPurchase;
 	};
 	constructor (name: string, quantity = 0, clickValue = 1, multiplier = 1) {
 		this.name = name;

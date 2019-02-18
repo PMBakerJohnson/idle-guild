@@ -11,14 +11,9 @@ export class ResourcesService {
   constructor(private tickerService: TickerService) {
 		this.establishTicker();
 	}
+	resources: Resource[] = RESOURCES;
 
-	resources = RESOURCES;
-
-	getResources(): Observable<Resource[]> {
-		return of(this.resources);
-	}
-
-	// Built the configuration of what happens each tick out separately for ease of viewing.
+  // Built the configuration of what happens each tick out separately for ease of viewing.
 	resourcesTicker = {
 		next: speedMultiplier => {
 			for(let resource of this.resources) {
@@ -27,10 +22,24 @@ export class ResourcesService {
 			this.getResources();
 		}
 	}
-
 	establishTicker(): void {
 		this.tickerService.tickObservable
 			.subscribe(this.resourcesTicker);
 	}
+
+	getResources(): Observable<Resource[]> {
+		return of(this.resources);
+	}
+
+  spend(amountToSpend: number, resourceToSpend: string): boolean {
+    let couldSpend: boolean = false;
+
+    // Find returns the first object in an array that matches the required condition.
+    couldSpend = this.resources.find(resource => {
+      return resource.name == resourceToSpend;
+    }).spend(amountToSpend);
+
+    return couldSpend;
+  }
 
 }

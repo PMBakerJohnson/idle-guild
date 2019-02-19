@@ -41,5 +41,9 @@ export class ResourcesService {
 
     return couldSpend;
   }
-
+  updateIncome(incomeSource: string, incomeAmount: number, resourceEarned: string) {
+    this.resources.find(resource => {
+      return resource.name === resourceEarned;
+    }).updateIncome(incomeSource, incomeAmount);
+  }
 }

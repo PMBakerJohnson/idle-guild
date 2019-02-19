@@ -1,4 +1,4 @@
-<div *ngFor="let building of buildings" (click)="purchaseBuilding(building)" class='purchaseable-building' >
+<div *ngFor="let building of buildings" class='owned-building' >
   Name: {{ building.name }} <br />
   {{ building.type | titlecase }} <br />
   Costs:{{ building.cost }} {{ building.purchaseWith }} <br />

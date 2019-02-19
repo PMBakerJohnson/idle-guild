@@ -15,16 +15,13 @@ export class OwnedPropertyComponent implements OnInit {
   }
 
   buildings: Building[];
+  testBuildings: Building[];
 
   getBuildings(): void {
     this.buildingsService.getPurchaseableBuildings()
-      .subscribe(this.buildingObserver);
-  }
-
-  buildingObserver = {
-    next: allBuildings => {
-      this.buildings = allBuildings.ownedBuildings;
-    }
+      .subscribe(
+        allBuildings => { this.buildings = allBuildings.buildingsOwned }
+      );
   }
 
 }

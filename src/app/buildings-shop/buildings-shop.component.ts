@@ -10,7 +10,6 @@ import { Building } from '../objects/building';
 export class BuildingsShopComponent implements OnInit {
 
   constructor(private buildingsService: BuildingsService) { }
-
   ngOnInit() {
     this.getBuildings();
   }
@@ -20,7 +19,7 @@ export class BuildingsShopComponent implements OnInit {
   getBuildings(): void {
     this.buildingsService.getPurchaseableBuildings()
       .subscribe(
-        allBuildings => {this.buildings = allBuildings.availableBuildings});
+        allBuildings => { this.buildings = allBuildings.availableBuildings });
   }
 
   purchaseBuilding(building: Building): void {

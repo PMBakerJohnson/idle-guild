@@ -3,11 +3,11 @@ import { BuildingsService } from '../buildings.service';
 import { Building } from '../objects/building';
 
 @Component({
-  selector: 'app-buildings-shop',
-  templateUrl: './buildings-shop.component.html',
-  styleUrls: ['./buildings-shop.component.css']
+  selector: 'app-owned-property',
+  templateUrl: './owned-property.component.html',
+  styleUrls: ['./owned-property.component.css']
 })
-export class BuildingsShopComponent implements OnInit {
+export class OwnedPropertyComponent implements OnInit {
 
   constructor(private buildingsService: BuildingsService) { }
   ngOnInit() {
@@ -15,14 +15,13 @@ export class BuildingsShopComponent implements OnInit {
   }
 
   buildings: Building[];
+  testBuildings: Building[];
 
   getBuildings(): void {
     this.buildingsService.getPurchaseableBuildings()
       .subscribe(
-        allBuildings => { this.buildings = allBuildings.availableBuildings });
+        allBuildings => { this.buildings = allBuildings.buildingsOwned }
+      );
   }
 
-  purchaseBuilding(building: Building): void {
-    this.buildingsService.purchaseBuilding(building);
-  }
 }

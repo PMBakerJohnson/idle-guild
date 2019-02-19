@@ -7,6 +7,7 @@ import { ResourceDisplayComponent } from './resource-display/resource-display.co
 import { PurchaseablesComponent } from './purchaseables/purchaseables.component';
 import { BuildingsShopComponent } from './buildings-shop/buildings-shop.component';
 import { PeopleShopComponent } from './people-shop/people-shop.component';
+import { OwnedPropertyComponent } from './owned-property/owned-property.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PeopleShopComponent } from './people-shop/people-shop.component';
     ResourceDisplayComponent,
     PurchaseablesComponent,
     BuildingsShopComponent,
-    PeopleShopComponent
+    PeopleShopComponent,
+    OwnedPropertyComponent
   ],
   imports: [
     BrowserModule

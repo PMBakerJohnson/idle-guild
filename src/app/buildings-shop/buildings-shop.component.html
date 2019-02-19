@@ -1,6 +1,9 @@
-<div *ngFor="let building of buildings" (click)="purchaseBuilding(building)" class='purchaseable-building' >
-  Name: {{ building.name }} <br />
-  {{ building.type | titlecase }} <br />
-  Costs:{{ building.cost }} {{ building.purchaseWith }} <br />
-  Produces:{{ building.production }} {{ building.productionType }}
+<div class="scrollable" style="height:30rem;">
+  <div *ngFor="let building of buildings" (click)="purchaseBuilding(building)" class='purchaseable-building' >
+    <p>
+    Name: {{ building.name }} <br />
+    {{ building.type | titlecase }} <br />
+    Costs:{{ building.cost }} {{ building.purchaseWith }} <br />
+    Produces:{{ building.production }} {{ building.productionType }}
+  </div>
 </div>

@@ -42,6 +42,8 @@ export class TickerService {
 		};
 	}
 
+
+
 	initializeLoopingTick = function(observer) {
 		window.setInterval(() => {
     	observer.next(this.speedMultiplier);

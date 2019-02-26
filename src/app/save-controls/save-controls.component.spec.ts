@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClickableComponent } from './clickable.component';
+import { SaveControlsComponent } from './save-controls.component';
 
-describe('ClickableComponent', () => {
-  let component: ClickableComponent;
-  let fixture: ComponentFixture<ClickableComponent>;
+describe('SaveControlsComponent', () => {
+  let component: SaveControlsComponent;
+  let fixture: ComponentFixture<SaveControlsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClickableComponent ]
+      declarations: [ SaveControlsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClickableComponent);
+    fixture = TestBed.createComponent(SaveControlsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

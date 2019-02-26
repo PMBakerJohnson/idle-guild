@@ -1,7 +1,6 @@
 export class Resource {
 	name: string;
 	quantity: number;
-	clickValue: number;
 	multiplier: number;
 	perTick: number;
 	earnings: IncomeItem[] = [];
@@ -18,9 +17,6 @@ export class Resource {
 		}
 
 	};
-	produce(amountToProduce = this.clickValue) {
-		this.quantity = this.quantity + (amountToProduce * this.multiplier);
-	};
 	spend(amountToSpend): boolean {
 		let couldPurchase: boolean = false;
 		if(this.quantity > amountToSpend) {
@@ -29,13 +25,14 @@ export class Resource {
 		}
 		return couldPurchase;
 	};
-	constructor(name: string, quantity = 0, clickValue = 1, multiplier = 1) {
+	constructor(name: string, quantity = 0, multiplier = 1, earnings = []) {
 		this.name = name;
 		this.quantity = quantity;
-		this.clickValue = clickValue;
 		this.multiplier = multiplier;
+		this.earnings = earnings;
 		this.calculatePerTick();
 	};
+
 	updateIncome(incomeSource: string, incomeAmount: number) {
 		let updatedIncome: boolean = false;
 		for(let incomeItem of this.earnings) {
@@ -50,7 +47,6 @@ export class Resource {
 		}
 		this.calculatePerTick();
 	}
-
 }
 
 interface IncomeItem {

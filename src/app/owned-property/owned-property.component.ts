@@ -11,17 +11,12 @@ export class OwnedPropertyComponent implements OnInit {
 
   constructor(private buildingsService: BuildingsService) { }
   ngOnInit() {
-    this.getBuildings();
   }
 
   buildings: Building[];
-  testBuildings: Building[];
 
-  getBuildings(): void {
-    this.buildingsService.getPurchaseableBuildings()
-      .subscribe(
-        allBuildings => { this.buildings = allBuildings.buildingsOwned }
-      );
-  }
+  public subscriptionToBuildings = this.buildingsService.buildingsOwned$.subscribe(buildingsOwned => {
+    this.buildings = buildingsOwned;
+  })
 
 }

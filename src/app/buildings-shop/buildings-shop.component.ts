@@ -11,16 +11,13 @@ export class BuildingsShopComponent implements OnInit {
 
   constructor(private buildingsService: BuildingsService) { }
   ngOnInit() {
-    this.getBuildings();
   }
 
   buildings: Building[];
 
-  getBuildings(): void {
-    this.buildingsService.getPurchaseableBuildings()
-      .subscribe(
-        allBuildings => { this.buildings = allBuildings.availableBuildings });
-  }
+  public subscriptionToBuildings = this.buildingsService.availableBuildings$.subscribe(availableBuildings => {
+    this.buildings = availableBuildings;
+  })
 
   purchaseBuilding(building: Building): void {
     this.buildingsService.purchaseBuilding(building);

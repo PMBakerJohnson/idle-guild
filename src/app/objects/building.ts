@@ -6,11 +6,16 @@ export class Building {
 	production: number;
 	productionType: string;
 	constructor(type = 'Guild Hall'
+			, name = ''
 			, cost = Math.floor(Math.random() * (400 - 300 + 1) + 300)
 			, purchaseWith = 'gold'
 			, production = Math.floor(Math.random() * (10 - 1 + 1) + 1)
 			, productionType = 'gold') {
-		this.name = BUILDINGNAMES[Math.floor(Math.random()*BUILDINGNAMES.length)];
+		if(name !== '') {
+			this.name = name;
+		} else {
+			this.name = BUILDINGNAMES[Math.floor(Math.random()*BUILDINGNAMES.length)];
+		}
 		this.type = type;
 		this.cost = cost;
 		this.purchaseWith = purchaseWith;

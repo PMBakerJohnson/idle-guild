@@ -2,15 +2,15 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/81de043ced7c48b3a45956a384259378)](https://www.codacy.com/app/PMBakerJohnson/idle-guild?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PMBakerJohnson/idle-guild&amp;utm_campaign=Badge_Grade)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
 
-The basic conceit that I'm going for is that you, the player character, are an aspiring manager of an adventurer's guild in a D&D inspired fantasy setting. You'll have facilities created to support various adventurer's and other support staff that you'll hire, and can expand as you see fit.
+The basic conceit that I'm going for is that you, the player character, are an aspiring manager of an adventurer's guild in a D&D inspired fantasy setting. You'll have facilities created to support various adventurers and other support staff that you'll hire, and can expand as you see fit.
 
 ## Current features
 
-You begin with a small initial sum of money, and then can purchase buildings to earn (and increase) a passive income. Also some tabs!
+You begin with a small initial sum of money, and then can purchase buildings to earn (and increase) a passive income. Also some tabs! And now you can save the game!
 
 ## Current effort
 
-Persisting player progress between sessions, along with a manual save and load.
+Cleanup after the surprising nonsense that was implementing saving the game.
 
 ## Up next, in approximate order of importance
 

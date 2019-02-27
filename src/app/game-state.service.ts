@@ -10,8 +10,11 @@ export class GameStateService {
     this.loadData();
   }
 
-  savedData: Array<SaveData> = [];
+  // INTERNAL VARIABLES
+  private savedData: Array<SaveData> = [];
 
+
+  // DATA MANAGEMENT
   // Accepts a key and returns an array of generic JSON objects from the saved data
   public pullSavedData(key: string): Array<object> {
     let returnData = [];
@@ -29,6 +32,9 @@ export class GameStateService {
   public pushSaveData(key: string, dataToSave: Array<any>): void {
     this.savedData.push({ key: key, data: dataToSave });
   }
+
+
+  // EVENT TRIGGERS - These get called to trigger everything else to happen. Usually they'll perform one simple action, like interacting with LocalStorage.
   public saveData() {
     this.savedData = [];
     this.saveEvent$.next('SAVE');
@@ -45,10 +51,12 @@ export class GameStateService {
   }
 
 
+  // OBSERVABLE(S) - Things that subscribe to this will receive a notification
   public saveEvent$ = new Subject<string>();
 
 }
 
+// Mostly just functions as a reminder of what format I'm wanting to accept and receive data in.
 class SaveData {
   key: string;
   data: Array<any>;

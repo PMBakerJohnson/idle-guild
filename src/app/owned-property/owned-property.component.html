@@ -1,8 +1,6 @@
 <div class="scrollable" style="height:32rem;">
   <div *ngFor="let building of buildings" class='owned-building' >
-    Name: {{ building.name }} <br />
-    {{ building.type | titlecase }} <br />
-    Costs:{{ building.cost }} {{ building.purchaseWith }} <br />
-    Produces:{{ building.production }} {{ building.productionType }}
+    <p style="font-weight:bold;">{{ building.name }}</p>
+    <p>Produces:{{ building.production }} {{ building.productionType }}</p>
   </div>
 </div>

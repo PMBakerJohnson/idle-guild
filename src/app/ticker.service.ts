@@ -8,9 +8,11 @@ export class TickerService {
 
   constructor() { }
 
+  // WORTHLESS - This gets passed around a whole lot but doesn't actually accomplish anything. Just like yer mum. OHHHHHH
 	speedMultiplier = 1;
 
-	// This creates an observable. I think?
+
+	// GAME LOOP - This creates the game clock as an observable things can subscribe to. I probably could have just had
 	tickSubscriber = function() {
 		// This will keep track of each observer.
 		const observers = [];
@@ -41,14 +43,10 @@ export class TickerService {
 			};
 		};
 	}
-
-
-
 	initializeLoopingTick = function(observer) {
 		window.setInterval(() => {
     	observer.next(this.speedMultiplier);
   	}, 1000);
 	}
-
 	tickObservable = new Observable(this.tickSubscriber());
 }

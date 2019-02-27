@@ -10,14 +10,14 @@ import { Building } from '../objects/building';
 export class BuildingsShopComponent implements OnInit {
 
   constructor(private buildingsService: BuildingsService) { }
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   buildings: Building[];
 
-  public subscriptionToBuildings = this.buildingsService.availableBuildings$.subscribe(availableBuildings => {
-    this.buildings = availableBuildings;
-  })
+  public subscriptionToBuildings = this.buildingsService.availableBuildings$
+    .subscribe(availableBuildings => {
+      this.buildings = availableBuildings;
+    });
 
   purchaseBuilding(building: Building): void {
     this.buildingsService.purchaseBuilding(building);

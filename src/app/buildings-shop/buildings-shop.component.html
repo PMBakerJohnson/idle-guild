@@ -1,9 +1,10 @@
 <div class="scrollable" style="height:30rem;">
   <div *ngFor="let building of buildings" (click)="purchaseBuilding(building)" class='purchaseable-building' >
+    <p style="font-weight:bold"> Name: {{ building.name }} </p>
     <p>
-    Name: {{ building.name }} <br />
     {{ building.type | titlecase }} <br />
     Costs:{{ building.cost }} {{ building.purchaseWith }} <br />
     Produces:{{ building.production }} {{ building.productionType }}
+    </p>
   </div>
 </div>

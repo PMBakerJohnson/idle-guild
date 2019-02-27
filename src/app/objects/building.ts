@@ -11,6 +11,7 @@ export class Building {
 			, purchaseWith = 'gold'
 			, production = Math.floor(Math.random() * (10 - 1 + 1) + 1)
 			, productionType = 'gold') {
+		// Sets the name. If none specified, generates a new one.
 		if(name !== '') {
 			this.name = name;
 		} else {

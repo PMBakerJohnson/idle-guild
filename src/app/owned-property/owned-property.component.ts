@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BuildingsService } from '../buildings.service';
 import { Building } from '../objects/building';
 
@@ -7,7 +7,7 @@ import { Building } from '../objects/building';
   templateUrl: './owned-property.component.html',
   styleUrls: ['./owned-property.component.css']
 })
-export class OwnedPropertyComponent implements OnInit {
+export class OwnedPropertyComponent implements OnInit, OnDestroy {
 
   constructor(private buildingsService: BuildingsService) { }
   ngOnInit() {
@@ -18,5 +18,9 @@ export class OwnedPropertyComponent implements OnInit {
   public subscriptionToBuildings = this.buildingsService.buildingsOwned$.subscribe(buildingsOwned => {
     this.buildings = buildingsOwned;
   })
+
+  ngOnDestroy() {
+    this.subscriptionToBuildings.unsubscribe();
+  }
 
 }

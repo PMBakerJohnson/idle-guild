@@ -13,13 +13,13 @@ export class SaveControlsComponent implements OnInit {
   ngOnInit() {
   }
 
+  // These are all just calls to the saveService's functions. This seems... wrong, somehow.
   save(): void {
     this.saveService.saveData();
   }
   load(): void {
     this.saveService.loadData();
   }
-
   reset(): void {
     this.saveService.resetData();
   }

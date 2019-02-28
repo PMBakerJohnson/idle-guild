@@ -1,11 +1,23 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { SaveControlsComponent } from './save-controls/save-controls.component';
+import { ResourceDisplayComponent } from './resource-display/resource-display.component';
+import { PurchaseablesComponent } from './purchaseables/purchaseables.component';
+import { OwnedPropertyComponent } from './owned-property/owned-property.component';
+import { BuildingsShopComponent } from './buildings-shop/buildings-shop.component';
+import { PeopleShopComponent } from './people-shop/people-shop.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        SaveControlsComponent,
+        ResourceDisplayComponent,
+        PurchaseablesComponent,
+        OwnedPropertyComponent,
+        BuildingsShopComponent,
+        PeopleShopComponent
       ],
     }).compileComponents();
   }));
@@ -20,12 +32,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('idle-guild');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to idle-guild!');
   });
 });

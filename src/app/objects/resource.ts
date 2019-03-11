@@ -4,6 +4,15 @@ export class Resource {
 	multiplier: number;
 	perTick: number;
 	earnings: IncomeItem[] = [];
+	// Receives values and returns a resource with the appropriate values.
+		// Must have a name. Everything else has a default.
+	constructor(name: string, quantity = 0, multiplier = 1, earnings = []) {
+		this.name = name;
+		this.quantity = quantity;
+		this.multiplier = multiplier;
+		this.earnings = earnings;
+		this.calculatePerTick();
+	};
 	// Maybe unnecessary? This fires to get the new total every tick in-game.
 		// Consider separating this out; resources don't necessarily accrue, things produce a resource.
 	accrue(speedMultiplier) {
@@ -45,15 +54,6 @@ export class Resource {
 		}
 		this.calculatePerTick();
 	}
-	// Receives values and returns a resource with the appropriate values.
-		// Must have a name. Everything else has a default.
-	constructor(name: string, quantity = 0, multiplier = 1, earnings = []) {
-		this.name = name;
-		this.quantity = quantity;
-		this.multiplier = multiplier;
-		this.earnings = earnings;
-		this.calculatePerTick();
-	};
 }
 
 interface IncomeItem {

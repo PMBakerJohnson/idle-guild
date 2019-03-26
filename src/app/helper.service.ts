@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+     providedIn: 'root'
 })
 export class HelperService {
 
-  constructor() { }
+     constructor() { }
 
-  getRandomInteger(max: number, min: number): number {
-    let randomInteger: number = undefined;
+     getRandomInteger(max: number, min: number): number {
+          let randomInteger: number = undefined;
 
-    randomInteger = Math.floor(Math.random() * (max - min + 1) + min);
-
-    return randomInteger;
-  }
+          randomInteger = Math.floor(Math.random() * (max - min + 1) + min);
+          
+          return randomInteger;
+     }
 
 }

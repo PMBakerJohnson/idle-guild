@@ -2,18 +2,22 @@ import { TestBed } from '@angular/core/testing';
 
 import { Building } from './building';
 
-describe('BuildingsService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe('Build', () => {
 
-  const buildingInstance: Building = new Building();
+  let buildingInstance: Building = new Building();
 
-  const customBuildingInstance: Building = new Building(
-          'Guild Hall'
-          , 'A Test Building'
-          , 500
-          , 'gold'
-          , 10
-          , 'gold');
+  let customBuildingInstance: Building;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    customBuildingInstance = new Building(
+            'Guild Hall'
+            , 'A Test Building'
+            , 500
+            , 'gold'
+            , 10
+            , 'gold');
+  });
 
   it('should create default building', () => {
     expect(buildingInstance).toBeTruthy();

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class GameStateService {
 
 
   // DATA MANAGEMENT
-  // Accepts a key and returns an array of generic JSON objects from the saved data
+  /** Accepts a key and returns an array of generic JSON objects from the saved data */
   public pullSavedData(key: string): Array<object> {
     let returnData = [];
 
@@ -29,6 +29,7 @@ export class GameStateService {
 
     return returnData;
   }
+  /** Accepts data as an array of values and a key to associate it with and saves it in localStorage */
   public pushSaveData(key: string, dataToSave: Array<any>): void {
     this.savedData.push({ key: key, data: dataToSave });
   }

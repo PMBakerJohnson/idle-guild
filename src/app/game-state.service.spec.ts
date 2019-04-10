@@ -1,39 +1,54 @@
 import { TestBed } from '@angular/core/testing';
 
+import * as testData from './test-data';
 import { GameStateService } from './game-state.service';
 
 describe('GameStateService', () => {
 
-  let service: GameStateService;
-  let data: string[];
-  let dataAsJSON: string;
+     describe('as a new player', () =>
+     {
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [GameStateService]
-    });
+     });
 
-    service = TestBed.get(GameStateService);
-    data = []
-  });
+     let service: GameStateService;
 
-  afterEach(() => {
-    service = TestBed.get(GameStateService);
-  })
+     beforeEach(() => {
+          TestBed.configureTestingModule({
+               providers: [ GameStateService ]
+          });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+          service = TestBed.get(GameStateService);
+          // Game state is handled by an observable. The observable emits a string value
+          service.saveEvent$.subscribe(gameStateEvent => {
+               switch (gameStateEvent) {
+                    case "SAVE":
+                         service.pushSaveData('testResources', testData.testResources);
+                         break;
+                    case "LOAD":
+                         service.pullSavedData('testResources');
+                         break;
+                    default:
+                         break;
+               };
+          });
+     });
 
-  xit('should save data', () => {
-    spyOn(window.localStorage, 'setItem');
-    service.pushSaveData('testData', data);
-    expect(window.localStorage.setItem).toHaveBeenCalledWith('testData', dataAsJSON);
-  });
 
-  xit('should load data', () => {
-    spyOn(localStorage, 'getItem');
+     it('should be created', () => {
+          expect(service).toBeTruthy();
+     });
 
-    service.pullSavedData('testData');
-  })
+     it('should save data', () => {
+          spyOn(window.localStorage, 'setItem').and.callFake(testData.localStorage.prototype.setItem);
+          service.saveData();
+          expect(window.localStorage.setItem).toHaveBeenCalledWith('saveData',
+               // This is just the format saveData ends up taking.
+               JSON.stringify( [{ key: 'testResources', data: testData.testResources }] ));
+     });
+
+     xit('should load data', () => {
+          spyOn(localStorage, 'getItem');
+
+          service.pullSavedData('testData');
+     })
 });

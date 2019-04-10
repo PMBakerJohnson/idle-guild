@@ -36,19 +36,20 @@ export class GameStateService {
 
 
   // EVENT TRIGGERS - These get called to trigger everything else to happen. Usually they'll perform one simple action, like interacting with LocalStorage.
-  public saveData() {
+  public saveData(): void {
     this.savedData = [];
     this.saveEvent$.next('SAVE');
     localStorage.setItem("saveData", JSON.stringify(this.savedData));
   }
-  public loadData() {
+  public loadData(): void {
     if (localStorage.getItem("saveData") !== null) {
       this.savedData = JSON.parse(localStorage.getItem("saveData"));
     }
     this.saveEvent$.next('LOAD');
   }
-  public resetData() {
+  public resetData(): void {
     localStorage.removeItem("saveData");
+    
   }
 
 

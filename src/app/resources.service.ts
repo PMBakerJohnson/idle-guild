@@ -49,7 +49,7 @@ export class ResourcesService {
 
           return couldSpend;
      }
-     public updateIncome(incomeSource: string, incomeAmount: number, resourceEarned: string) {
+     public updateIncome(incomeSource: string, incomeAmount: number, resourceEarned: string): void {
           this.resources.find(resource => {
                return resource.name === resourceEarned;
           }).updateIncome(incomeSource, incomeAmount);
@@ -59,15 +59,11 @@ export class ResourcesService {
      // RESOURCE OBSERVABLE
      // Creates a behavior subject. This can be subscribed to and then used to update and maintain resource values throughout the application.
      public resourcesSubject$ = new BehaviorSubject<Resource[]>(this.resources);
-     // This might be unnecessary. It's an observable variant of the resourcesSubject. I'm not sure... what the gain is? On using asObservable?
-     // TODO: Research this more. Why SHOULD I use asObservable? Subjects can be subscribed to, just like observables. What's the advantage of this?
-     // . . . Successfully tested commenting this out and not using it at all. So.... I'm thinking I'm not using it.
-     // public resourcesSubject$ = this.resourcesSubject.asObservable();
 
 
      // HELPER FUNCTIONS
      // TODO: Pull the casting bit out of here and into a separate function, so it matches how Buildings does it. And also in case I need to cast under multiple circumstances.
-     public updateResources(newResources: any[]) {
+     public updateResources(newResources: any[]): void {
           this.resources = [];
           for(let untypedResource of newResources) {
                this.resources.push(new Resource(untypedResource.name, untypedResource.quantity, untypedResource.multiplier, untypedResource.earnings));

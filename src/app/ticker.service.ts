@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 
 @Injectable({
      providedIn: 'root'
@@ -9,44 +9,47 @@ export class TickerService {
      constructor() { }
 
      // WORTHLESS - This gets passed around a whole lot but doesn't actually accomplish anything. Just like yer mum. OHHHHHH
-     speedMultiplier = 1;
+     private numberOfDays: number = 1;
 
+     // Putting the list of subscribed observers in the service's scope instead
+          // of inside a function to be passed around in that scope.
+     private subscribedObservers: Observer<number>[];
 
      // GAME LOOP - This creates the game clock as an observable things can subscribe to. I probably could have just had
-     tickSubscriber = function() {
-          // This will keep track of each observer.
-          const observers = [];
+     private tickSubscriber = function() {
 
-          // Return the subscriber function? Runs when subscribe() is invoked, purportedly)
-          return (observer: any) => {
-               // Adds the observer to the list of them.
-               observers.push(observer);
-               // If the first subscription, start running.
-               if (observers.length === 1) {
-                    // This runs it. This SHOULD make the whole application run on a one second tick.
-                    this.initializeLoopingTick({
-                         next(val: any) {
-                              // Iterate through observers and notify all subscriptions
-                              observers.forEach(obs => obs.next(val));
+          // Return the subscriber function? Runs when subscribe() is invoked
+          return function(observer: any) {
+               // Collects the observer
+               this.subscribedObservers.push(observer);
+               // If this is the first subscription, this starts the wait() loop that runs the clock.
+                    // I'm not sure this is a good way to have the idle functionality exist? It works, for now.
+               if (this.subscribedObservers.length === 1) {
+                    // Starts the function that
+                    this.initializeLoopingTick(
+                    {
+                         next(numberOfDays: number) {
+                              // Iterate through all observers and emit for them.
+                              this.subscribedObservers.forEach( (obs: Observer<number>) => obs.next(numberOfDays));
                          },
                          complete() {
-                              // Notify all complete callbacks
-                              observers.slice(0).forEach(obs => obs.complete());
+                              // Notify all complete callbacks to
+                              this.subscribedObservers.slice(0).forEach((obs: Observer<number>) => obs.complete());
                          }
                     });
                }
                return {
                     unsubscribe() {
                          // Remove from the observers array so it's no longer notified
-                         observers.splice(observers.indexOf(observer), 1);
+                         this.subscribedObservers.splice(this.subscribedObservers.indexOf(observer), 1);
                     }
                };
           };
      }
-     initializeLoopingTick = function(observer: { next: (arg0: any) => void; }) {
+     private initializeLoopingTick(observer: { next: any; complete?: () => void; } ): void {
           window.setInterval(() => {
-               observer.next(this.speedMultiplier);
+               observer.next(this.numberOfDays);
           }, 1000);
      }
-     tickObservable = new Observable(this.tickSubscriber());
+     public tickObservable = new Observable(this.tickSubscriber());
 }

@@ -1,17 +1,39 @@
 import { Subject } from 'rxjs';
 
 export class mockGameStateService {
-     public pushSaveData(key: string, dataToSave: Array<any>): void {
-          let aDataItem = this.data.find(dataItem => dataItem["key"] === key);
-          if (aDataItem === undefined) {
-               this.data.push({ key: key, data: dataToSave });
+     static defaultData: any[];
+
+     constructor() {
+          if(mockGameStateService.defaultData !== undefined) {
+               this.data = mockGameStateService.defaultData;
           } else {
-               this.data[this.data.indexOf(aDataItem)] === dataToSave;
+               this.data = [];
           }
      };
-     public pullSavedData(key: string): any[] {
-          let mockSavedData = JSON.parse(JSON.stringify(this.data.find( dataItem => dataItem["key"] === key )));
-          return mockSavedData;
+
+     public pushSaveData(key: string, dataToSave: Array<any>): void {
+          let saveObject = JSON.parse(
+               JSON.stringify(
+                    { key: key, data: dataToSave }
+               ));
+          let match = this.data.find(dataItem => dataItem["key"] === key);
+          if (matchMedia === undefined) {
+               this.data.push(saveObject);
+          } else {
+               this.data[this.data.indexOf(match)] = saveObject;
+          }
+     };
+     public pullSavedData(key: string): Array<object> {
+          let returnValue: Array<object>
+          let mockSavedData = this.data.find(
+               dataItem => dataItem["key"] === key
+          );
+          if (mockSavedData !== undefined) {
+               returnValue = mockSavedData["data"];
+          } else {
+               returnValue = [];
+          }
+          return returnValue;
      }
      public saveData(): void {
           this.saveEvent$.next('SAVE');
@@ -21,5 +43,5 @@ export class mockGameStateService {
      };
      public resetData(): void {};
      public saveEvent$ = new Subject<string>();
-     private data: object[];
+     private data: any[];
 }

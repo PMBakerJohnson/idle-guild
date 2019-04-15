@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import * as testData from './test-data';
+import * as resourceData from './mock-objects/resources';
+import { mockTickerService } from './mock-objects/ticker-service';
+import { mockGameStateService } from './mock-objects/game-state-service';
 
 import { ResourcesService } from './resources.service';
 import { GameStateService } from './game-state.service';
@@ -13,13 +15,14 @@ describe('ResourcesService', () => {
      beforeEach(() => {
           TestBed.configureTestingModule({
                providers: [
-                    { provide: TickerService, useClass: testData.mockTickerService },
-                    { provide: GameStateService, useClass: testData.mockGameStateService }
+                    { provide: TickerService, useClass: mockTickerService },
+                    { provide: GameStateService, useClass: mockGameStateService }
                ],
                schemas: [ NO_ERRORS_SCHEMA ]
           });
 
-          spyOn(testData.mockGameStateService.prototype, 'pullSavedData').and.callFake(testData.mockPullSavedData);
+          mockGameStateService.defaultData = [{ key: 'resource', data: resourceData.testResources }]
+
           service = TestBed.get(ResourcesService);
      });
 
@@ -28,8 +31,7 @@ describe('ResourcesService', () => {
      });
 
      it('should get default values', () => {
-          expect(testData.mockGameStateService.prototype.pullSavedData).toHaveBeenCalled();
-          service.resourcesSubject$.subscribe(resources => expect(resources).toEqual(testData.testResources));
+          service.resourcesSubject$.subscribe(resources => expect(resources).toEqual(resourceData.testResources));
      });
 
      it('should update resource income', () => {

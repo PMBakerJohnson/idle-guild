@@ -1,14 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import * as testData from './test-data';
+import { localStorage } from './mock-objects/local-storage';
 import { GameStateService } from './game-state.service';
 
 describe('GameStateService', () => {
-
-     describe('as a new player', () =>
-     {
-
-     });
 
      let service: GameStateService;
 
@@ -33,21 +29,20 @@ describe('GameStateService', () => {
           });
      });
 
-
      it('should be created', () => {
           expect(service).toBeTruthy();
      });
 
      it('should save data', () => {
-          spyOn(window.localStorage, 'setItem').and.callFake(testData.localStorage.prototype.setItem);
+          spyOn(window.localStorage, 'setItem').and.callFake(localStorage.prototype.setItem);
           service.saveData();
           expect(window.localStorage.setItem).toHaveBeenCalledWith('saveData',
                // This is just the format saveData ends up taking.
                JSON.stringify( [{ key: 'testResources', data: testData.testResources }] ));
      });
 
-     xit('should load data', () => {
-          spyOn(localStorage, 'getItem');
+     it('should load data', () => {
+          spyOn(window.localStorage, 'getItem').and.callFake(localStorage.prototype.getItem);
 
           service.pullSavedData('testData');
      })

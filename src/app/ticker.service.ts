@@ -17,6 +17,7 @@ export class TickerService {
 
      // GAME LOOP - This creates the game clock as an observable things can subscribe to. I probably could have just had
      private tickSubscriber = function() {
+          var self = this;
 
           // Return the subscriber function? Runs when subscribe() is invoked
           return function(observer: any) {
@@ -29,7 +30,7 @@ export class TickerService {
                     this.initializeLoopingTick(
                     {
                          next(numberOfDays: number) {
-                              // Iterate through all observers and emit for them.
+                              // Iterate through all observers and emitk for them.
                               this.subscribedObservers.forEach( (obs: Observer<number>) => obs.next(numberOfDays));
                          },
                          complete() {
@@ -44,7 +45,7 @@ export class TickerService {
                          this.subscribedObservers.splice(this.subscribedObservers.indexOf(observer), 1);
                     }
                };
-          };
+          }.bind(self);
      }
      private initializeLoopingTick(observer: { next: any; complete?: () => void; } ): void {
           window.setInterval(() => {

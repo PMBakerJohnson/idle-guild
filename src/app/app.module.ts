@@ -11,20 +11,20 @@ import { SaveControlsComponent } from './save-controls/save-controls.component';
 import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ResourceDisplayComponent,
-    PurchaseablesComponent,
-    BuildingsShopComponent,
-    PeopleShopComponent,
-    OwnedPropertyComponent,
-    SaveControlsComponent,
-    MessagesComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+     declarations: [
+          AppComponent,
+          ResourceDisplayComponent,
+          PurchaseablesComponent,
+          BuildingsShopComponent,
+          PeopleShopComponent,
+          OwnedPropertyComponent,
+          SaveControlsComponent,
+          MessagesComponent
+     ],
+     imports: [
+          BrowserModule
+     ],
+     providers: [],
+     bootstrap: [AppComponent]
 })
 export class AppModule { }

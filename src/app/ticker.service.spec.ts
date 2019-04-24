@@ -3,10 +3,24 @@ import { TestBed } from '@angular/core/testing';
 import { TickerService } from './ticker.service';
 
 describe('TickerService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+     let timerCallback: jasmine.Spy, service: TickerService;
 
-  it('should be created', () => {
-    const service: TickerService = TestBed.get(TickerService);
-    expect(service).toBeTruthy();
-  });
+     beforeEach(() => {
+          TestBed.configureTestingModule({});
+          service = TestBed.get(TickerService);
+     });
+
+     it('should be created', () => {
+          expect(service).toBeTruthy();
+     });
+
+     it('should emit values over time', () => {
+          jasmine.clock().install();
+          timerCallback = jasmine.createSpy('timerCallback');
+          service.tickObservable.subscribe(() => {
+               timerCallback();
+          });
+          jasmine.clock().tick(1001);
+          expect(timerCallback).toHaveBeenCalled();
+     });
 });

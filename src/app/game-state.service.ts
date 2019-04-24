@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class GameStateService {
 
 
   // DATA MANAGEMENT
-  // Accepts a key and returns an array of generic JSON objects from the saved data
+  /** Accepts a key and returns an array of generic JSON objects from the saved data */
   public pullSavedData(key: string): Array<object> {
     let returnData = [];
 
@@ -29,25 +29,27 @@ export class GameStateService {
 
     return returnData;
   }
+  /** Accepts data as an array of values and a key to associate it with and saves it in localStorage */
   public pushSaveData(key: string, dataToSave: Array<any>): void {
     this.savedData.push({ key: key, data: dataToSave });
   }
 
 
   // EVENT TRIGGERS - These get called to trigger everything else to happen. Usually they'll perform one simple action, like interacting with LocalStorage.
-  public saveData() {
+  public saveData(): void {
     this.savedData = [];
     this.saveEvent$.next('SAVE');
     localStorage.setItem("saveData", JSON.stringify(this.savedData));
   }
-  public loadData() {
+  public loadData(): void {
     if (localStorage.getItem("saveData") !== null) {
       this.savedData = JSON.parse(localStorage.getItem("saveData"));
     }
     this.saveEvent$.next('LOAD');
   }
-  public resetData() {
+  public resetData(): void {
     localStorage.removeItem("saveData");
+    
   }
 
 

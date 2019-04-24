@@ -5,27 +5,27 @@ import { BuildingsShopComponent } from '../buildings-shop/buildings-shop.compone
 import { PeopleShopComponent } from '../people-shop/people-shop.component';
 
 describe('PurchaseablesComponent', () => {
-  let component: PurchaseablesComponent;
-  let fixture: ComponentFixture<PurchaseablesComponent>;
+     let component: PurchaseablesComponent;
+     let fixture: ComponentFixture<PurchaseablesComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        PurchaseablesComponent,
-        BuildingsShopComponent,
-        PeopleShopComponent
-      ]
-    })
-    .compileComponents();
-  }));
+     beforeEach(async(() => {
+          TestBed.configureTestingModule({
+               declarations: [
+                    PurchaseablesComponent,
+                    BuildingsShopComponent,
+                    PeopleShopComponent
+               ]
+          })
+          .compileComponents();
+     }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PurchaseablesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+     beforeEach(() => {
+          fixture = TestBed.createComponent(PurchaseablesComponent);
+          component = fixture.componentInstance;
+          fixture.detectChanges();
+     });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+     it('should create', () => {
+          expect(component).toBeTruthy();
+     });
 });

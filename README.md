@@ -19,5 +19,6 @@ Cleanup after the surprising nonsense that was implementing saving the game.
 ## Roadmap ???
 0.1: Proof of concept
 -    Just enough to convince me I can do this. Has a resource, an idle loop, a way to persist data, and purchaseable objects that increase the amount of any given resource you produce.
+
 0.2: People
 -    Add hireable employees that draw a wage and produce finances;

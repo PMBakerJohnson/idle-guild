@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResourceDisplayComponent } from './resource-display.component';
+import { ResourceDisplayComponent } from '../app/resource-display/resource-display.component';
 
 describe('ResourceDisplayComponent', () => {
      let component: ResourceDisplayComponent;

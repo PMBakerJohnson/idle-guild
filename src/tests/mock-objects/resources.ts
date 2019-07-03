@@ -1,4 +1,4 @@
-import { Resource } from '../objects/resource';
+import { Resource } from '../../app/objects/resource';
 
 
 export let copper: Resource = new Resource(
@@ -16,6 +16,7 @@ export let silver: Resource = new Resource(
      , { name: 'Different income'       , amount: 20}]
 );
 export let gold: Resource = new Resource('Gold');
+export let goldJson: any = JSON.parse(JSON.stringify(gold));
 
 export var testResources: Resource[] = [copper, silver, gold];
 export var testResourcesJson: any[] = [

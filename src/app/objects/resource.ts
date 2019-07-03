@@ -1,3 +1,5 @@
+import { SaveableObject } from './saveable-object';
+
 export class Resource {
 	name: string;
 	quantity: number;
@@ -54,6 +56,23 @@ export class Resource {
 		}
 		this.calculatePerTick();
 	}
+}
+
+export class SaveableResource implements SaveableObject {
+     id: number;
+	name: string;
+	quantity: number;
+	multiplier: number;
+	perTick: number;
+	earnings: IncomeItem[] = [];
+     deserialize(objectAsJson: any): SaveableObject {
+		let deserializedResource = new SaveableResource();
+		deserializedResource.id = objectAsJson.id;
+		deserializedResource.name = objectAsJson.name;
+		deserializedResource.quantity = objectAsJson.quantity;
+		deserializedResource.perTick = objectAsJson.perTick;
+		return deserializedResource;
+	};
 }
 
 interface IncomeItem {

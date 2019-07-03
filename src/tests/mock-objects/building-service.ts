@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { Building } from '../objects/building';
+import { Building } from '../../app/objects/building';
 
 
 export class mockBuildingsService {

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BuildingsService } from './buildings.service';
+import { BuildingsService } from '../app/buildings.service';
 import { mockTickerService } from './mock-objects/ticker-service';
 import { mockGameStateService } from './mock-objects/game-state-service';
 import { mockResourceService } from './mock-objects/resource-service';
 import * as mockBuildings from './mock-objects/buildings';
-import { TickerService } from './ticker.service';
-import { ResourcesService } from './resources.service';
-import { GameStateService } from './game-state.service';
+import { TickerService } from '../app/ticker.service';
+import { ResourcesService } from '../app/resources.service';
+import { GameStateService } from '../app/game-state.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('BuildingsService', () =>
@@ -47,7 +47,7 @@ describe('BuildingsService', () =>
                expect(service).toBeTruthy();
           });
 
-          it('should load default values', () => {
+          it('should load by default', () => {
                service.availableBuildings$.subscribe(availableBuildings => {
                     expect(availableBuildings).toEqual(mockBuildings.testBuildings);
                });
@@ -97,4 +97,17 @@ describe('BuildingsService', () =>
                expect(availableBuildings.length).toBeGreaterThan(0);
           });
      });
+
+     describe('In the middle of gameplay', () => {
+          beforeEach(() => {
+               TestBed.configureTestingModule({
+                    providers: [
+                         { provide: TickerService, useClass: mockTickerService }
+                         , { provide: ResourcesService, useClass: mockResourceService }
+                         , { provide: GameStateService, useClass: mockGameStateService }
+                    ],
+        schemas: [NO_ERRORS_SCHEMA]
+               }).compileComponents();
+          })
+     })
 });

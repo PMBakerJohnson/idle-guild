@@ -3,9 +3,9 @@ import * as resourceData from './mock-objects/resources';
 import { mockTickerService } from './mock-objects/ticker-service';
 import { mockGameStateService } from './mock-objects/game-state-service';
 
-import { ResourcesService } from './resources.service';
-import { GameStateService } from './game-state.service';
-import { TickerService } from './ticker.service';
+import { ResourcesService } from '../app/resources.service';
+import { GameStateService } from '../app/game-state.service';
+import { TickerService } from '../app/ticker.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ResourcesService', () => {
@@ -19,7 +19,7 @@ describe('ResourcesService', () => {
                     { provide: GameStateService, useClass: mockGameStateService }
                ],
                schemas: [ NO_ERRORS_SCHEMA ]
-          });
+          }).compileComponents();
 
           mockGameStateService.defaultData = [{ key: 'resource', data: resourceData.testResources }]
 

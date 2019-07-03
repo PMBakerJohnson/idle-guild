@@ -19,7 +19,7 @@ export class ResourcesService {
           this.saveService.saveEvent$.subscribe(this.saveResourceSubscriber);
      }
 
-     // INTERNAL VARIABLES - Just where I hold the resources dat.
+     // INTERNAL VARIABLES - Just where I hold the resources data.
      private resources: Resource[] = RESOURCES;
 
 

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import * as testData from './test-data';
+import * as testData from '../app/test-data';
 import { localStorage } from './mock-objects/local-storage';
-import { GameStateService } from './game-state.service';
+import { GameStateService } from '../app/game-state.service';
 
 describe('GameStateService', () => {
 

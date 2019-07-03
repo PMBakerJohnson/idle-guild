@@ -1,4 +1,4 @@
-import { Resource } from '../objects/resource';
+import { Resource } from '../../app/objects/resource';
 import { BehaviorSubject } from 'rxjs';
 
 export class mockResourceService {
@@ -7,7 +7,7 @@ export class mockResourceService {
      static setResources(resources: Resource[]): void {
           if (resources !== undefined) { mockResourceService.resources = resources }
      }
-     
+
      constructor() {
           if (mockResourceService.resources !== undefined)
           {

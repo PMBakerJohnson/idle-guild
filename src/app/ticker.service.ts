@@ -9,7 +9,7 @@ export class TickerService {
      constructor() { }
 
      // WORTHLESS - This gets passed around a whole lot but doesn't actually accomplish anything. Just like yer mum. OHHHHHH
-     private numberOfDays: number = 1;
+     private numberOfDays = 1;
 
      // Putting the list of subscribed observers in the service's scope instead
           // of inside a function to be passed around in that scope.
@@ -20,7 +20,7 @@ export class TickerService {
           // Capture the scope to refer to it reliably; it needs to be captured because "this" isn't a reliable way
                // to refer to it, given that this is a function that returns a function that calls a function with a
                // parameter that has its own scope (or at least, it did during testing)
-          let self = this;
+          const self = this;
 
           // Return the subscriber function? Runs when subscribe() is invoked
           return function(observer: any) {
@@ -49,7 +49,7 @@ export class TickerService {
                     }
                };
           };
-     }
+     };
      private initializeLoopingTick(observer: { next: any; complete?: () => void; } ): void {
           window.setInterval(() => {
                observer.next(this.numberOfDays);

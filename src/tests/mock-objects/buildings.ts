@@ -75,4 +75,4 @@ export let testOtherBuildingsJson: any[] = [
           , 'production':     0
           , 'productionType': 'Copper'
      }
-]
+];

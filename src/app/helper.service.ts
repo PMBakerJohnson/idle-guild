@@ -16,8 +16,8 @@ export class HelperService {
      }
 
      fromJSON(object: any, objectAsJson: any) {
-          for(let propName in objectAsJson) {
-               if(object.hasOwnProperty(propName)) {
+          for (const propName in objectAsJson) {
+               if (object.hasOwnProperty(propName)) {
                     object[propName] = objectAsJson[propName];
                }
           }

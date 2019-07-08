@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import { Resource } from 'src/app/objects/resource';
 
-import { Resource } from './resource';
 
 describe('Resource', () => {
 
-  let simpleGoldResource: Resource = new Resource('Gold');
+  const simpleGoldResource: Resource = new Resource('Gold');
   let silverResource: Resource;
 
   beforeEach(() => {
@@ -33,7 +33,7 @@ describe('Resource', () => {
   });
 
   it('should successfully spend silver', () => {
-    let canSpend: boolean = silverResource.spend(40)
+    const canSpend: boolean = silverResource.spend(40);
     expect(canSpend).toBeTruthy();
     expect(silverResource.quantity).toEqual(460);
     silverResource.quantity = 500;
@@ -47,5 +47,5 @@ describe('Resource', () => {
   it('should update existing income', () => {
     silverResource.updateIncome('A source of income', 30);
     expect(silverResource.perTick).toEqual(50);
-  })
+});
 });

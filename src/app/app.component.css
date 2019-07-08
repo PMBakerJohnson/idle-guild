@@ -3,17 +3,17 @@
 }
 
 .play-area>div:first-child {
-	border-radius: 0rem 0rem 0rem 2rem;
+	border-radius: 0 0 0 2rem;
 }
 
 .play-area>div:last-child {
-	border-radius: 0rem 0rem 2rem 0rem;
+	border-radius: 0 0 2rem 0;
 }
 
 .play-area>div {
 	border: solid;
-	border-width: 1px;
 	border-color: black;
+	border-width: 1px;
 	padding: 1rem;
 }
 
@@ -24,8 +24,8 @@
 
 .title-row {
 	border: solid;
-	border-width: 1px 1px 0px 1px;
-	border-radius: 2rem 2rem 0rem 0rem;
 	border-color: black;
+	border-radius: 2rem 2rem 0 0;
+	border-width: 1px 1px 0 1px;
 	padding: 2rem;
 }

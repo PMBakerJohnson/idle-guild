@@ -17,9 +17,9 @@ export class BuildingsShopComponent implements OnInit {
 
      ngOnInit() {
           this.buildingsSub = this.buildingsService.availableBuildings$
-          .subscribe(availableBuildings => {
-               this.buildings = availableBuildings;
-          });
+               .subscribe(availableBuildings => {
+                    this.buildings = availableBuildings;
+               });
      }
 
      purchaseBuilding(building: Building): void {

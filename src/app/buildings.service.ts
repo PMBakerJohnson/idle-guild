@@ -11,10 +11,10 @@ import { HelperService } from './helper.service';
 })
 export class BuildingsService {
      constructor(
-     private tickerService: TickerService,
-     private resourcesService: ResourcesService,
-     private saveService: GameStateService,
-     private helperService: HelperService) {
+          private tickerService: TickerService,
+          private resourcesService: ResourcesService,
+          private saveService: GameStateService,
+          private helperService: HelperService) {
           // Autoload. Gets both of them and saves them into temporary variables for readability,
           // then passes them into the update function.
           const savedAvailableBuildings = this.saveService.pullSavedData('availableBuildings');
@@ -24,7 +24,7 @@ export class BuildingsService {
           }
 
           this.saveService.saveEvent$.subscribe(this.saveBuildingSubscriber);
-          
+
           this.establishTicker();
      }
 
@@ -33,13 +33,6 @@ export class BuildingsService {
      private daysSinceLastNewBuilding = 10;
      private availableBuildings: Building[] = [];
      private buildingsOwned: Building[] = [];
-
-
-     // DATA PERSISTENCE - Probably a bad header. This is where I set up the observables that emit the buildings.
-     // Both of the requisite lists as BehaviorSubjects; that specific typing means subscriptions automatically get the most
-     // recent value emitted when they first subscribe.
-     public availableBuildings$ = new BehaviorSubject(this.availableBuildings);
-     public buildingsOwned$ = new BehaviorSubject(this.buildingsOwned);
 
      private buildingTicker = {
           next: (daysPerTick: number) => {
@@ -56,7 +49,6 @@ export class BuildingsService {
           }
      };
 
-
      // SAVE/LOAD
      private saveBuildingSubscriber = {
           next: (saveDirections: string) => {
@@ -72,20 +64,35 @@ export class BuildingsService {
           }
      };
 
+     // DATA PERSISTENCE - Probably a bad header. This is where I set up the observables that emit the buildings.
+     // Both of the requisite lists as BehaviorSubjects; that specific typing means subscriptions automatically get the most
+     // recent value emitted when they first subscribe.
+     public availableBuildings$ = new BehaviorSubject(this.availableBuildings);
+     public buildingsOwned$ = new BehaviorSubject(this.buildingsOwned);
+
      // DATA MANAGEMENT FUNCTIONS - Kind of helper functions?
      // Primarily for receiving from JSON; should just build an explicit cast into data objects.
      private updateBuildings(availableBuildings: any[], buildingsOwned: any[]) {
-          for(let building of availableBuildings) {
+          for (const building of availableBuildings) {
                this.availableBuildings.push(this.helperService.fromJSON(new Building(), building));
           }
-          for(let building of buildingsOwned) {
+          for (const building of buildingsOwned) {
                this.buildingsOwned.push(this.helperService.fromJSON(new Building(), building));
           }
-          //this.availableBuildings = this.castJSONToBuilding(availableBuildings);
-          //this.buildingsOwned = this.castJSONToBuilding(buildingsOwned);
-
           this.availableBuildings$.next(this.availableBuildings);
           this.buildingsOwned$.next(this.buildingsOwned);
+     }
+
+     // GAME LOOP
+     private establishTicker(): void {
+          this.tickerService.tickObservable
+               .subscribe(this.buildingTicker);
+     }
+     private generateNewBuilding(): void {
+          this.availableBuildings.unshift(new Building());
+          if (this.availableBuildings.length > 10) {
+               this.availableBuildings.pop();
+          }
      }
 
 
@@ -103,18 +110,5 @@ export class BuildingsService {
                });
                this.resourcesService.updateIncome(buildingToBuy.name, buildingToBuy.production, buildingToBuy.productionType);
           }
-     }
-
-
-     // GAME LOOP
-     private generateNewBuilding(): void {
-          this.availableBuildings.unshift(new Building());
-          if (this.availableBuildings.length > 10) {
-               this.availableBuildings.pop();
-          }
-     }
-     private establishTicker(): void {
-          this.tickerService.tickObservable
-          .subscribe(this.buildingTicker);
      }
 }

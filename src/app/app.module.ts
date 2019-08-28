@@ -9,6 +9,10 @@ import { PeopleShopComponent } from './people-shop/people-shop.component';
 import { OwnedPropertyComponent } from './owned-property/owned-property.component';
 import { SaveControlsComponent } from './save-controls/save-controls.component';
 import { MessagesComponent } from './messages/messages.component';
+import { ResourcesService } from './resources.service';
+import { BuildingsService } from './buildings.service';
+import { AResourceService } from 'src/abstracts/aresource-service';
+import { ABuildingService } from 'src/abstracts/abuilding-service';
 
 @NgModule({
      declarations: [
@@ -24,7 +28,10 @@ import { MessagesComponent } from './messages/messages.component';
      imports: [
           BrowserModule
      ],
-     providers: [],
+     providers: [
+          { provide: AResourceService, useClass: ResourcesService },
+          { provide: ABuildingService, useClass: BuildingsService }
+     ],
      bootstrap: [AppComponent]
 })
 export class AppModule { }

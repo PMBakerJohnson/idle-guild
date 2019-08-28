@@ -6,6 +6,7 @@ import { PurchaseablesComponent } from '../app/purchaseables/purchaseables.compo
 import { OwnedPropertyComponent } from '../app/owned-property/owned-property.component';
 import { BuildingsShopComponent } from '../app/buildings-shop/buildings-shop.component';
 import { PeopleShopComponent } from '../app/people-shop/people-shop.component';
+import { TestModule } from './test.module';
 
 describe('AppComponent', () => {
      beforeEach(async(() => {
@@ -19,6 +20,7 @@ describe('AppComponent', () => {
                     BuildingsShopComponent,
                     PeopleShopComponent
                ],
+               imports: [ TestModule ]
           }).compileComponents();
      }));
 

@@ -3,11 +3,12 @@ import { Resource, RESOURCES } from './objects/resource';
 import { TickerService } from './ticker.service';
 import { BehaviorSubject } from 'rxjs';
 import { GameStateService } from './game-state.service';
+import { AResourceService } from 'src/abstracts/aresource-service';
 
 @Injectable({
      providedIn: 'root'
 })
-export class ResourcesService {
+export class ResourcesService implements AResourceService {
      constructor(private tickerService: TickerService, private saveService: GameStateService) {
           this.startTickerObserver();
 

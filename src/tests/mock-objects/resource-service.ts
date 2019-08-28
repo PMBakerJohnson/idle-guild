@@ -1,23 +1,13 @@
 import { Resource } from '../../app/objects/resource';
 import { BehaviorSubject } from 'rxjs';
+import { AResourceService } from 'src/abstracts/aresource-service';
 
-export class mockResourceService {
-
-     static resources: Resource[];
-     static setResources(resources: Resource[]): void {
-          if (resources !== undefined) { mockResourceService.resources = resources }
+export class MockResourcesService implements AResourceService {
+     constructor() { }
+     resourcesSubject$: BehaviorSubject<Resource[]> = new BehaviorSubject<Resource[]>([]);
+     spend(_amountToSpend: number, _resourceToSpend: string) {
+          return true;
      }
-
-     constructor() {
-          if (mockResourceService.resources !== undefined)
-          {
-               this.resources$ = new BehaviorSubject(mockResourceService.resources);
-          } else {
-               this.resources$ = new BehaviorSubject([]);
-          }
-     }
-     public spend(): boolean { return true; }
-     public updateIncome(): void {}
-     public resources$: BehaviorSubject<Resource[]>;
-     public updateResources(): void { }
+     updateIncome(_incomeSource: string, _incomeAmount: number, _resourceEarned: string) {}
+     updateResources(_newResources: any[]) {}
 }

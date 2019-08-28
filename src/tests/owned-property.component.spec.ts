@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OwnedPropertyComponent } from '../app/owned-property/owned-property.component';
+import { TestModule } from './test.module';
 
 describe('OwnedPropertyComponent', () => {
      let component: OwnedPropertyComponent;
@@ -8,6 +9,7 @@ describe('OwnedPropertyComponent', () => {
 
      beforeEach(async(() => {
           TestBed.configureTestingModule({
+               imports: [ TestModule ],
                declarations: [ OwnedPropertyComponent ]
           })
           .compileComponents();

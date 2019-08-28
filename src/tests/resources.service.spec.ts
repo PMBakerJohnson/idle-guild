@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import * as resourceData from './mock-objects/resources';
-import { mockTickerService } from './mock-objects/ticker-service';
-import { mockGameStateService } from './mock-objects/game-state-service';
+import { MockTickerService, ExtendedTickerService } from './mock-objects/ticker-service';
+import { MockGameStateService } from './mock-objects/game-state-service';
 
 import { ResourcesService } from '../app/resources.service';
 import { GameStateService } from '../app/game-state.service';
 import { TickerService } from '../app/ticker.service';
+
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import * as cloneDeep from 'lodash/clonedeep';
 
 describe('ResourcesService', () => {
 
@@ -15,13 +17,13 @@ describe('ResourcesService', () => {
      beforeEach(() => {
           TestBed.configureTestingModule({
                providers: [
-                    { provide: TickerService, useClass: mockTickerService },
-                    { provide: GameStateService, useClass: mockGameStateService }
+                    { provide: TickerService, useClass: MockTickerService },
+                    { provide: GameStateService, useClass: MockGameStateService }
                ],
                schemas: [ NO_ERRORS_SCHEMA ]
           }).compileComponents();
 
-          mockGameStateService.defaultData = [{ key: 'resource', data: resourceData.testResources }]
+          MockGameStateService.defaultData = [{ key: 'resource', data: cloneDeep(resourceData.testResources) }];
 
           service = TestBed.get(ResourcesService);
      });
@@ -36,12 +38,12 @@ describe('ResourcesService', () => {
 
      it('should update resource income', () => {
           service.resourcesSubject$.subscribe(firstPassAtResources => {
-               let resourceInitially = firstPassAtResources[0];
+               const resourceInitially = firstPassAtResources[0];
 
                service.updateIncome('An Income Source', 100, resourceInitially.name);
 
                service.resourcesSubject$.subscribe(secondPassAtResources => {
-                    let resourcePostUpdate = secondPassAtResources[0];
+                    const resourcePostUpdate = secondPassAtResources[0];
                     expect(resourcePostUpdate.perTick - resourceInitially.perTick === 100);
                });
           });
@@ -49,7 +51,7 @@ describe('ResourcesService', () => {
 
      it('should spend resource', () => {
           service.resourcesSubject$.subscribe(resourcesInitially => {
-               let resourceInitially = resourcesInitially.filter(resource => {
+               const resourceInitially = resourcesInitially.filter(resource => {
                     let returnValue = false;
                     if (resource.quantity > 0) {
                          returnValue = true;
@@ -59,9 +61,31 @@ describe('ResourcesService', () => {
                service.spend(resourceInitially.quantity, resourceInitially.name);
 
                service.resourcesSubject$.subscribe(resourcesAfterSpend => {
-                    let resourceAfterSpend = resourcesAfterSpend.find(resource => resource.name === resourceInitially.name);
+                    const resourceAfterSpend = resourcesAfterSpend.find(resource => resource.name === resourceInitially.name);
                     expect(resourceAfterSpend.quantity === 0);
-               })
+               });
           });
-     })
+     });
+
+     describe('when using save and load', () => {
+          let saveTestableService: ResourcesService;
+          let tickerService: ExtendedTickerService;
+          let gameStateService: MockGameStateService;
+
+          beforeEach(() => {
+               MockGameStateService.defaultData = [{ key: 'resource', data: cloneDeep(resourceData.testResources) }];
+               gameStateService = new MockGameStateService();
+               tickerService = new ExtendedTickerService();
+
+               saveTestableService = new ResourcesService(
+                    tickerService,
+                    gameStateService);
+          });
+
+          it('should save resources', () => {
+               spyOn(gameStateService, 'pushSaveData');
+               gameStateService.saveData();
+               expect(gameStateService.pushSaveData).toHaveBeenCalledWith('resource', resourceData.testResources);
+          });
+     });
 });

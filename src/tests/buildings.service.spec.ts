@@ -1,39 +1,43 @@
 import { TestBed } from '@angular/core/testing';
 
 import { BuildingsService } from '../app/buildings.service';
-import { mockTickerService } from './mock-objects/ticker-service';
-import { mockGameStateService } from './mock-objects/game-state-service';
-import { mockResourceService } from './mock-objects/resource-service';
+import { MockTickerService, ExtendedTickerService } from './mock-objects/ticker-service';
+import { MockGameStateService } from './mock-objects/game-state-service';
+import { MockResourcesService } from './mock-objects/resource-service';
 import * as mockBuildings from './mock-objects/buildings';
 import { TickerService } from '../app/ticker.service';
-import { ResourcesService } from '../app/resources.service';
 import { GameStateService } from '../app/game-state.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HelperService } from 'src/app/helper.service';
+import * as testData from './mock-objects/buildings';
+import * as cloneDeep from 'lodash/clonedeep';
+import { TestModule } from './test.module';
 
-describe('BuildingsService', () =>
-{
+describe('BuildingsService', () => {
 
      let service: BuildingsService, availableBuildings: any[];
+
+     const defaultData = [
+          { key: 'availableBuildings'
+               , data: mockBuildings.testBuildings }
+          , { key: 'buildingsOwned'
+               , data: mockBuildings.testOtherBuildings }
+     ];
 
      describe('Returning user', () => {
           beforeEach(() => {
                // Sets up the environment in which we'll create the service
                TestBed.configureTestingModule({
+                    imports: [ TestModule ],
                     providers: [
-                         { provide: TickerService, useClass: mockTickerService }
-                         , { provide: ResourcesService, useClass: mockResourceService }
-                         , { provide: GameStateService, useClass: mockGameStateService }
+                         { provide: TickerService, useClass: MockTickerService }
+                         , { provide: GameStateService, useClass: MockGameStateService }
                     ],
                     schemas: [ NO_ERRORS_SCHEMA ]
                }).compileComponents();
 
                // Establishes defaults for this test suite
-               mockGameStateService.defaultData = [
-                    { key:    'availableBuildings',
-                    data:     mockBuildings.testBuildings},
-                    { key:    'buildingsOwned',
-                    data:     mockBuildings.testOtherBuildings}
-               ];
+               MockGameStateService.defaultData = cloneDeep(defaultData);
 
                // Gets an instance of the service
                service = TestBed.get(BuildingsService);
@@ -48,34 +52,34 @@ describe('BuildingsService', () =>
           });
 
           it('should load by default', () => {
-               service.availableBuildings$.subscribe(availableBuildings => {
-                    expect(availableBuildings).toEqual(mockBuildings.testBuildings);
+               service.availableBuildings$.subscribe(serviceBuildings => {
+                    expect(serviceBuildings).toEqual(mockBuildings.testBuildings);
                });
                service.buildingsOwned$.subscribe(buildingsOwned => {
-                    expect(buildingsOwned).toEqual(mockBuildings.testOtherBuildings)
+                    expect(buildingsOwned).toEqual(mockBuildings.testOtherBuildings);
                });
           });
 
           it('should purchase building', () => {
-               service.availableBuildings$.subscribe(availableBuildings => {
-                    let buildingForPurchase = availableBuildings[0];
+               service.availableBuildings$.subscribe(serviceBuildings => {
+                    const buildingForPurchase = serviceBuildings[0];
 
                     service.purchaseBuilding(buildingForPurchase);
 
-                    expect(availableBuildings.find(building =>
+                    expect(serviceBuildings.find(building =>
                          buildingForPurchase.name === building.name
                     )).toBeUndefined();
-               })
+               });
           });
      });
 
      describe('Brand new user', () => {
           beforeEach(() => {
                TestBed.configureTestingModule({
+                    imports: [ TestModule ],
                     providers: [
-                         { provide: TickerService, useClass: mockTickerService }
-                         , { provide: ResourcesService, useClass: mockResourceService }
-                         , { provide: GameStateService, useClass: mockGameStateService }
+                         { provide: TickerService, useClass: MockTickerService }
+                         , { provide: GameStateService, useClass: MockGameStateService }
                     ],
                     schemas: [ NO_ERRORS_SCHEMA ]
                }).compileComponents();
@@ -87,7 +91,7 @@ describe('BuildingsService', () =>
 
           it('should generate new building each tick', () => {
                // Test specific setup
-               mockTickerService.establishOutputValues([200]);
+               MockTickerService.establishOutputValues([200]);
 
                // Get a service instance to test, retrieve existing buildings.
                service = TestBed.get(BuildingsService);
@@ -101,13 +105,69 @@ describe('BuildingsService', () =>
      describe('In the middle of gameplay', () => {
           beforeEach(() => {
                TestBed.configureTestingModule({
+                    imports: [ TestModule ],
                     providers: [
-                         { provide: TickerService, useClass: mockTickerService }
-                         , { provide: ResourcesService, useClass: mockResourceService }
-                         , { provide: GameStateService, useClass: mockGameStateService }
+                         { provide: TickerService, useClass: MockTickerService }
+                         , { provide: GameStateService, useClass: MockGameStateService }
                     ],
-        schemas: [NO_ERRORS_SCHEMA]
+                    schemas: [ NO_ERRORS_SCHEMA ]
                }).compileComponents();
-          })
-     })
+          });
+     });
+
+     describe('when event triggers are used', () => {
+          let tickerService: ExtendedTickerService;
+          let resourcesService: MockResourcesService;
+          let gameStateService: MockGameStateService;
+          let helperService: HelperService;
+
+          let testableBuildingService: BuildingsService;
+
+          beforeEach(() => {
+               tickerService = new ExtendedTickerService();
+               resourcesService = new MockResourcesService();
+               gameStateService = new MockGameStateService();
+               helperService = new HelperService;
+
+               MockGameStateService.defaultData = cloneDeep(defaultData);
+
+               testableBuildingService = new BuildingsService(
+                    tickerService
+                    , resourcesService
+                    , gameStateService
+                    , helperService);
+          });
+
+          it('should call save method', () => {
+               // Establishes the spy. Apparently it's useful to instantiate the spy.
+               const pushDataSpy = spyOn(gameStateService, 'pushSaveData');
+
+               // Trigger the save event.
+               gameStateService.saveData();
+
+               // Confirm that the spy received calls as should be expected given the default data for this suite.
+               expect(pushDataSpy.calls.argsFor(0)).toEqual(['availableBuildings', testData.testBuildings]);
+               expect(pushDataSpy.calls.argsFor(1)).toEqual(['buildingsOwned', testData.testOtherBuildings]);
+          });
+
+          it('should call load method', () => {
+               // Establish the spy on the load method.
+               const pullDataSpy = spyOn(gameStateService, 'pullSavedData');
+
+               // I have to assert before the test to establish that the data actually performs a change.
+               testableBuildingService.availableBuildings$.subscribe(buildings => {
+                    expect(buildings).toEqual(testData.testBuildings);
+               });
+               testableBuildingService.buildingsOwned$.subscribe(buildings => {
+                    expect(buildings).toEqual(testData.testOtherBuildings);
+               });
+
+               // Trigger the save event.
+               gameStateService.loadData();
+
+               expect(pullDataSpy.calls.argsFor(0)).toEqual(['availableBuildings']);
+               expect(pullDataSpy.calls.argsFor(1)).toEqual(['buildingsOwned']);
+          });
+
+     });
 });

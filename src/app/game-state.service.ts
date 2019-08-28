@@ -13,10 +13,8 @@ export class GameStateService {
      // INTERNAL VARIABLES
      private savedData: Array<SaveData> = [];
 
-
      // OBSERVABLE(S) - Things that subscribe to this will receive a notification
      public saveEvent$ = new Subject<string>();
-
 
      // DATA MANAGEMENT
      /** Accepts a key and returns an array of generic JSON objects from the saved data */
@@ -57,7 +55,7 @@ export class GameStateService {
      }
 }
 // Mostly just functions as a reminder of what format I'm wanting to accept and receive data in.
-class SaveData {
+interface SaveData {
      key: string;
      data: Array<any>;
 }

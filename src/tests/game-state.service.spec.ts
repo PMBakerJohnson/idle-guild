@@ -17,15 +17,15 @@ describe('GameStateService', () => {
           // Game state is handled by an observable. The observable emits a string value
           service.saveEvent$.subscribe(gameStateEvent => {
                switch (gameStateEvent) {
-                    case "SAVE":
+                    case 'SAVE':
                          service.pushSaveData('testResources', testData.testResources);
                          break;
-                    case "LOAD":
+                    case 'LOAD':
                          service.pullSavedData('testResources');
                          break;
                     default:
                          break;
-               };
+               }
           });
      });
 
@@ -34,7 +34,7 @@ describe('GameStateService', () => {
      });
 
      it('should save data', () => {
-          spyOn(window.localStorage, 'setItem').and.callFake(localStorage.prototype.setItem);
+          spyOn(window.localStorage, 'setItem');
           service.saveData();
           expect(window.localStorage.setItem).toHaveBeenCalledWith('saveData',
                // This is just the format saveData ends up taking.
@@ -45,5 +45,5 @@ describe('GameStateService', () => {
           spyOn(window.localStorage, 'getItem').and.callFake(localStorage.prototype.getItem);
 
           service.pullSavedData('testData');
-     })
+     });
 });

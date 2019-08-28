@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Building } from './objects/building';
-import { ResourcesService } from './resources.service';
 import { TickerService } from './ticker.service';
 import { BehaviorSubject } from 'rxjs';
 import { GameStateService } from './game-state.service';
 import { HelperService } from './helper.service';
+import { AResourceService } from 'src/abstracts/aresource-service';
+import { ABuildingService } from 'src/abstracts/abuilding-service';
 
 @Injectable({
      providedIn: 'root'
 })
-export class BuildingsService {
+export class BuildingsService implements ABuildingService {
      constructor(
           private tickerService: TickerService,
-          private resourcesService: ResourcesService,
+          private resourcesService: AResourceService,
           private saveService: GameStateService,
           private helperService: HelperService) {
           // Autoload. Gets both of them and saves them into temporary variables for readability,

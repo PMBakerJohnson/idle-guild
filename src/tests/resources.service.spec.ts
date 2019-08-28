@@ -8,7 +8,7 @@ import { GameStateService } from '../app/game-state.service';
 import { TickerService } from '../app/ticker.service';
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import * as cloneDeep from 'lodash/clonedeep';
+import { cloneDeep } from 'lodash';
 
 describe('ResourcesService', () => {
 

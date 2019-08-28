@@ -10,8 +10,8 @@ import { GameStateService } from '../app/game-state.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HelperService } from 'src/app/helper.service';
 import * as testData from './mock-objects/buildings';
-import * as cloneDeep from 'lodash/clonedeep';
 import { TestModule } from './test.module';
+import { cloneDeep } from 'lodash';
 
 describe('BuildingsService', () => {
 

@@ -82,6 +82,11 @@ interface IncomeItem {
      amount: number;
 }
 
-export const RESOURCES: Resource[] = [
-     new Resource('gold', 500)
+const defaultResources: any[] = [
+     {
+          name: 'gold'
+          , quantity: 500
+     }
 ];
+
+export const RESOURCES: Resource[] = defaultResources.map((resource) => new Resource(resource.name, resource.quantity));

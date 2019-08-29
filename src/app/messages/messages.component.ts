@@ -11,7 +11,7 @@ export class MessagesComponent implements OnInit {
 
      constructor() { }
 
-     ngOnInit() {
+     public ngOnInit() {
      }
 
 }

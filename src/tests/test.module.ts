@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { MockResourcesService } from './mock-objects/resource-service';
-import { AResourceService } from 'src/abstracts/aresource-service';
-import { ABuildingService } from 'src/abstracts/abuilding-service';
 import { MockBuildingsService } from './mock-objects/building-service';
+import { ABuildingService } from 'src/app/services/abstracts/abuilding-service';
+import { AResourceService } from 'src/app/services/abstracts/aresource-service';
 
 @NgModule({
      providers: [

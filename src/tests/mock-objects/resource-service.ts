@@ -1,6 +1,6 @@
 import { Resource } from '../../app/objects/resource';
 import { BehaviorSubject } from 'rxjs';
-import { AResourceService } from 'src/abstracts/aresource-service';
+import { AResourceService } from 'src/app/services/abstracts/aresource-service';
 
 export class MockResourcesService implements AResourceService {
      constructor() { }

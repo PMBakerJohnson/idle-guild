@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import { Building } from '../../app/objects/building';
-import { ABuildingService } from 'src/abstracts/abuilding-service';
+import { ABuildingService } from 'src/app/services/abstracts/abuilding-service';
 
 export class MockBuildingsService implements ABuildingService {
      availableBuildings$: BehaviorSubject<Building[]>;

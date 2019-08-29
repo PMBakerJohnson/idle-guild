@@ -11,8 +11,8 @@ import { SaveControlsComponent } from './save-controls/save-controls.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ResourcesService } from './resources.service';
 import { BuildingsService } from './buildings.service';
-import { AResourceService } from 'src/abstracts/aresource-service';
-import { ABuildingService } from 'src/abstracts/abuilding-service';
+import { AResourceService } from 'src/app/services/abstracts/aresource-service';
+import { ABuildingService } from 'src/app/services/abstracts/abuilding-service';
 
 @NgModule({
      declarations: [

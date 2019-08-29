@@ -4,8 +4,8 @@ import { TickerService } from './ticker.service';
 import { BehaviorSubject, Observer } from 'rxjs';
 import { GameStateService } from './game-state.service';
 import { HelperService } from './helper.service';
-import { AResourceService } from 'src/abstracts/aresource-service';
-import { ABuildingService } from 'src/abstracts/abuilding-service';
+import { AResourceService } from 'src/app/services/abstracts/aresource-service';
+import { ABuildingService } from 'src/app/services/abstracts/abuilding-service';
 
 @Injectable({
      providedIn: 'root'

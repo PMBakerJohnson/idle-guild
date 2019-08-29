@@ -3,7 +3,7 @@ import { Resource, RESOURCES } from './objects/resource';
 import { TickerService } from './ticker.service';
 import { BehaviorSubject, Observer } from 'rxjs';
 import { GameStateService } from './game-state.service';
-import { AResourceService } from 'src/abstracts/aresource-service';
+import { AResourceService } from 'src/app/services/abstracts/aresource-service';
 
 @Injectable({
      providedIn: 'root'

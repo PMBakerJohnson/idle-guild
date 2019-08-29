@@ -73,7 +73,7 @@ export class BuildingsService implements ABuildingService {
 
      // DATA MANAGEMENT FUNCTIONS - Kind of helper functions?
      // Primarily for receiving from JSON; should just build an explicit cast into data objects.
-     private updateBuildings(availableBuildings: any[] = [], buildingsOwned: any[] = []) {
+     private updateBuildings(availableBuildings: any[] = [], buildingsOwned: any[] = []): void {
           for (const building of availableBuildings) {
                this.availableBuildings.push(this.helperService.fromJSON(new Building(), building));
           }

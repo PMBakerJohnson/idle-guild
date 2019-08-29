@@ -2,11 +2,11 @@ import { Resource } from 'src/app/objects/resource';
 import { BehaviorSubject } from 'rxjs';
 
 export abstract class AResourceService {
-     resourcesSubject$: BehaviorSubject<Resource[]>;
-     spend: (amountToSpend: number
+     public resourcesSubject$: BehaviorSubject<Resource[]>;
+     public spend: (amountToSpend: number
           , resourceToSpend: string) => boolean;
-     updateIncome: (incomeSource: string
+     public updateIncome: (incomeSource: string
           , incomeAmount: number
           , resourceEarned: string) => void;
-     updateResources: (newresources: any[]) => void;
+     public updateResources: (newresources: any[]) => void;
 }

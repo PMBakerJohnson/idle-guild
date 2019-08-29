@@ -17,11 +17,11 @@ export class Resource {
      }
      // Maybe unnecessary? This fires to get the new total every tick in-game.
      // Consider separating this out; resources don't necessarily accrue, things produce a resource.
-     accrue(speedMultiplier: number) {
+     public accrue(speedMultiplier: number): void {
           this.quantity = this.quantity + ((this.perTick * this.multiplier) * speedMultiplier);
      }
      // This figures how much should be earned with each tick.
-     calculatePerTick() {
+     public calculatePerTick() {
           this.perTick = 0;
 
           if (this.earnings) {
@@ -35,7 +35,7 @@ export class Resource {
      // and then subtracts the amountToSpend from the current total.
      // TODO: Separate out the spending and determining if a value is affordable. I should be able to check the affordability
      // of something without actually buying it.
-     spend(amountToSpend: number): boolean {
+     public spend(amountToSpend: number): boolean {
           let couldPurchase = false;
           if (this.quantity >= amountToSpend) {
                this.quantity = this.quantity - amountToSpend;
@@ -44,7 +44,7 @@ export class Resource {
           return couldPurchase;
      }
      // Takes in an amount and adds it to the array of things that produce the resource as an IncomeItem.
-     updateIncome(incomeSource: string, incomeAmount: number) {
+     public updateIncome(incomeSource: string, incomeAmount: number) {
           let updatedIncome = false;
           for (const incomeItem of this.earnings) {
                if (incomeItem.name === incomeSource) {
@@ -60,22 +60,22 @@ export class Resource {
      }
 }
 
-export class SaveableResource implements SaveableObject {
-     id: number;
-     name: string;
-     quantity: number;
-     multiplier: number;
-     perTick: number;
-     earnings: IncomeItem[] = [];
-     deserialize(objectAsJson: any): SaveableObject {
-          const deserializedResource = new SaveableResource();
-          deserializedResource.id = objectAsJson.id;
-          deserializedResource.name = objectAsJson.name;
-          deserializedResource.quantity = objectAsJson.quantity;
-          deserializedResource.perTick = objectAsJson.perTick;
-          return deserializedResource;
-     }
-}
+// export class SaveableResource implements SaveableObject {
+//      id: number;
+//      name: string;
+//      quantity: number;
+//      multiplier: number;
+//      perTick: number;
+//      earnings: IncomeItem[] = [];
+//      deserialize(objectAsJson: any): SaveableObject {
+//           const deserializedResource = new SaveableResource();
+//           deserializedResource.id = objectAsJson.id;
+//           deserializedResource.name = objectAsJson.name;
+//           deserializedResource.quantity = objectAsJson.quantity;
+//           deserializedResource.perTick = objectAsJson.perTick;
+//           return deserializedResource;
+//      }
+// }
 
 interface IncomeItem {
      name: string;

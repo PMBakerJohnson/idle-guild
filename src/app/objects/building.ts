@@ -1,4 +1,4 @@
-import { SaveableObject } from './saveable-object';
+// import { SaveableObject } from './saveable-object';
 
 const BUILDINGNAMES: string[] = [
      'The Warehouser & The Cartographer Tavern',
@@ -80,10 +80,10 @@ export class Building {
      }
 }
 
-export class SaveableBuilding implements SaveableObject {
-     id: number;
-     name: string;
-     cost: number;
-     purchaseWith: string;
-     deserialize: (objectAsJson: any) => SaveableObject;
-}
+// export class SaveableBuilding implements SaveableObject {
+//      public id: number;
+//      public name: string;
+//      public cost: number;
+//      public purchaseWith: string;
+//      public deserialize: (objectAsJson: any) => SaveableObject;
+// }

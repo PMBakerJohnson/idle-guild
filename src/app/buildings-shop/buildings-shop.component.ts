@@ -9,20 +9,22 @@ import { Subscription } from 'rxjs';
      styleUrls: ['./buildings-shop.component.css']
 })
 export class BuildingsShopComponent implements OnInit {
-     constructor(private buildingsService: BuildingsService) { }
-
-     buildings: Building[];
 
      public buildingsSub: Subscription;
 
-     ngOnInit() {
+     public buildings: Building[];
+
+     constructor(private buildingsService: BuildingsService) { }
+
+
+     public ngOnInit(): void {
           this.buildingsSub = this.buildingsService.availableBuildings$
                .subscribe(availableBuildings => {
                     this.buildings = availableBuildings;
                });
      }
 
-     purchaseBuilding(building: Building): void {
+     public purchaseBuilding(building: Building): void {
           this.buildingsService.purchaseBuilding(building);
      }
 }

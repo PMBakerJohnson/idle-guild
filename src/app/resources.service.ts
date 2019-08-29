@@ -32,12 +32,14 @@ export class ResourcesService implements AResourceService {
 
      // GAME LÖÖP
      // Built the configuration of what happens each tick out separately for ease of viewing, bröther.
-     private resourcesTicker = {
+     private resourcesTicker: Observer<{}> = {
           next: (speedMultiplier: number) => {
                for (const resource of this.resources) {
                     resource.accrue(speedMultiplier);
                }
           }
+          , error: (_err: any) => { }
+          , complete: () => { }
      };
 
 

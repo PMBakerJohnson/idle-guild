@@ -1,14 +1,14 @@
 import { SaveableObject } from './saveable-object';
 
 export class Resource {
-     name: string;
-     quantity: number;
-     multiplier: number;
-     perTick: number;
-     earnings: IncomeItem[] = [];
+     public name: string;
+     public quantity: number;
+     public multiplier: number;
+     public perTick: number;
+     public earnings: IncomeItem[] = [];
      // Receives values and returns a resource with the appropriate values.
      // Must have a name. Everything else has a default.
-     constructor(name: string, quantity = 0, multiplier = 1, earnings = []) {
+     constructor(name: string, quantity: number = 0, multiplier: number = 1, earnings: [] = []) {
           this.name = name;
           this.quantity = quantity;
           this.multiplier = multiplier;

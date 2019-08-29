@@ -11,6 +11,13 @@ import { ABuildingService } from 'src/abstracts/abuilding-service';
      providedIn: 'root'
 })
 export class BuildingsService implements ABuildingService {
+
+     // TODO: There need only be one list; purchased or not should be handled with an object property.
+     private daysSinceLastNewBuilding = 0;
+     private daysBeforeNewBuilding = 10;
+     private availableBuildings: Building[] = [];
+     private buildingsOwned: Building[] = [];
+
      constructor(
           private tickerService: TickerService,
           private resourcesService: AResourceService,
@@ -29,18 +36,12 @@ export class BuildingsService implements ABuildingService {
           this.establishTicker();
      }
 
-
-     // TODO: There need only be one list; purchased or not should be handled with an object property.
-     private daysSinceLastNewBuilding = 10;
-     private availableBuildings: Building[] = [];
-     private buildingsOwned: Building[] = [];
-
      private buildingTicker = {
           next: (daysPerTick: number) => {
                // Every 200 days, and also the very first day,
-               if (this.daysSinceLastNewBuilding >= 10) {
+               if (this.daysSinceLastNewBuilding >= this.daysBeforeNewBuilding) {
                     // Reset the counter
-                    this.daysSinceLastNewBuilding -= 10;
+                    this.daysSinceLastNewBuilding -= this.daysBeforeNewBuilding;
                     this.daysSinceLastNewBuilding += daysPerTick;
                     // Generate a new building
                     this.generateNewBuilding();

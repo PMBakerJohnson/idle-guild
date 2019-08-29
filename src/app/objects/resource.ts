@@ -8,7 +8,7 @@ export class Resource {
      public earnings: IncomeItem[] = [];
      // Receives values and returns a resource with the appropriate values.
      // Must have a name. Everything else has a default.
-     constructor(name: string, quantity: number = 0, multiplier: number = 1, earnings: [] = []) {
+     constructor(name: string, quantity: number = 0, multiplier: number = 1, earnings: any[] = []) {
           this.name = name;
           this.quantity = quantity;
           this.multiplier = multiplier;

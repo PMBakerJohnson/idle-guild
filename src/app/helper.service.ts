@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class HelperService {
 
+     constructor() { }
+
      public static getRandomInteger(max: number, min: number): number {
           let randomInteger: number;
 
@@ -13,7 +15,6 @@ export class HelperService {
           return randomInteger;
      }
 
-     constructor() { }
 
      public getRandomInteger(max: number, min: number): number {
           let randomInteger: number;

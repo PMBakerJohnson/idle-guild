@@ -1,35 +1,40 @@
 import { Subject } from 'rxjs';
+import { GameStateService } from 'src/app/game-state.service';
 
-export class mockGameStateService {
+export class MockGameStateService extends GameStateService {
      static defaultData: any[];
 
      constructor() {
-          if(mockGameStateService.defaultData !== undefined) {
-               this.data = mockGameStateService.defaultData;
+          super();
+          if (MockGameStateService.defaultData !== undefined) {
+               this.data = MockGameStateService.defaultData;
           } else {
                this.data = [];
           }
-     };
+     }
+
+     private data: any[];
+     public saveEvent$ = new Subject<string>();
 
      public pushSaveData(key: string, dataToSave: Array<any>): void {
-          let saveObject = JSON.parse(
+          const saveObject = JSON.parse(
                JSON.stringify(
                     { key: key, data: dataToSave }
                ));
-          let match = this.data.find(dataItem => dataItem["key"] === key);
+          const match = this.data.find(dataItem => dataItem['key'] === key);
           if (matchMedia === undefined) {
                this.data.push(saveObject);
           } else {
                this.data[this.data.indexOf(match)] = saveObject;
           }
-     };
+     }
      public pullSavedData(key: string): Array<object> {
-          let returnValue: Array<object>
-          let mockSavedData = this.data.find(
-               dataItem => dataItem["key"] === key
+          let returnValue: Array<object>;
+          const mockSavedData = this.data.find(
+               dataItem => dataItem['key'] === key
           );
           if (mockSavedData !== undefined) {
-               returnValue = mockSavedData["data"];
+               returnValue = mockSavedData['data'];
           } else {
                returnValue = [];
           }
@@ -37,11 +42,9 @@ export class mockGameStateService {
      }
      public saveData(): void {
           this.saveEvent$.next('SAVE');
-     };
+     }
      public loadData(): void {
           this.saveEvent$.next('LOAD');
-     };
-     public resetData(): void {};
-     public saveEvent$ = new Subject<string>();
-     private data: any[];
+     }
+     public resetData(): void { }
 }

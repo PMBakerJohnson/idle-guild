@@ -17,7 +17,10 @@ export class TickerService {
 
      // GAME LOOP - This creates the game clock as an observable things can subscribe to. I probably could have just had
      private tickSubscriber = function() {
-          let self = this;
+          // Capture the scope to refer to it reliably; it needs to be captured because "this" isn't a reliable way
+               // to refer to it, given that this is a function that returns a function that calls a function with a
+               // parameter that has its own scope (or at least, it did during testing)
+          const self = this;
 
           // Return the subscriber function? Runs when subscribe() is invoked
           return function(observer: any) {
@@ -30,7 +33,7 @@ export class TickerService {
                     self.initializeLoopingTick(
                     {
                          next(numberOfDays: number) {
-                              // Iterate through all observers and emitk for them.
+                              // Iterate through all observers and emit for them.
                               self.subscribedObservers.forEach( (obs: Observer<number>) => obs.next(numberOfDays));
                          },
                          complete() {
@@ -46,7 +49,7 @@ export class TickerService {
                     }
                };
           };
-     }
+     };
      private initializeLoopingTick(observer: { next: any; complete?: () => void; } ): void {
           window.setInterval(() => {
                observer.next(this.numberOfDays);

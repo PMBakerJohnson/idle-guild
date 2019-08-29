@@ -2,18 +2,18 @@
 	min-height: 30rem;
 }
 
-.play-area>div:first-child {
-	border-radius: 0rem 0rem 0rem 2rem;
+.play-area > div:first-child {
+	border-bottom-left-radius: 2rem;
 }
 
-.play-area>div:last-child {
-	border-radius: 0rem 0rem 2rem 0rem;
+.play-area > div:last-child {
+	border-bottom-right-radius: 2rem;
 }
 
-.play-area>div {
+.play-area > div {
 	border: solid;
-	border-width: 1px;
 	border-color: black;
+	border-width: 0.1rem;
 	padding: 1rem;
 }
 
@@ -23,9 +23,9 @@
 }
 
 .title-row {
-	border: solid;
-	border-width: 1px 1px 0px 1px;
-	border-radius: 2rem 2rem 0rem 0rem;
-	border-color: black;
+	border: 0.1rem solid black;
+	border-bottom-style: none;
+	border-top-left-radius: 2rem;
+	border-top-right-radius: 2rem;
 	padding: 2rem;
 }

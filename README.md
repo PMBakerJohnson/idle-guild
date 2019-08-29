@@ -10,7 +10,7 @@ You begin with a small initial sum of money, and then can purchase buildings to 
 
 ## Current effort
 
-Cleanup after the surprising nonsense that was implementing saving the game.
+Changing to test driven development!
 
 ## Up next, in approximate order of importance
 

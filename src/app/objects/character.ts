@@ -1,5 +1,5 @@
 export class Character {
-	name: string;
-	profession: string;
-	sex: string;
+     name: string;
+     profession: string;
+     sex: string;
 }

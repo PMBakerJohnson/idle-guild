@@ -9,10 +9,10 @@ export class PurchaseablesComponent implements OnInit {
 
      constructor() { }
 
-     ngOnInit() {
-          this.selectedTab = 'buildings'
-     }
-
      selectedTab: string;
+
+     ngOnInit() {
+          this.selectedTab = 'buildings';
+     }
 
 }

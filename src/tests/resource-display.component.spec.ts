@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MessagesComponent } from './messages.component';
+import { ResourceDisplayComponent } from '../app/resource-display/resource-display.component';
 
-describe('MessagesComponent', () => {
-     let component: MessagesComponent;
-     let fixture: ComponentFixture<MessagesComponent>;
+describe('ResourceDisplayComponent', () => {
+     let component: ResourceDisplayComponent;
+     let fixture: ComponentFixture<ResourceDisplayComponent>;
 
      beforeEach(async(() => {
           TestBed.configureTestingModule({
-               declarations: [ MessagesComponent ]
+               declarations: [ ResourceDisplayComponent ]
           })
           .compileComponents();
      }));
 
      beforeEach(() => {
-          fixture = TestBed.createComponent(MessagesComponent);
+          fixture = TestBed.createComponent(ResourceDisplayComponent);
           component = fixture.componentInstance;
           fixture.detectChanges();
      });

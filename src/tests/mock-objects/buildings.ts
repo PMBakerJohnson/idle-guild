@@ -1,4 +1,4 @@
-import { Building } from '../objects/building';
+import { Building } from '../../app/objects/building';
 
 
 export let theLocalPub:  Building = new Building('Pub',          'Local Pub',        300, 'Gold',   10,  'Gold');
@@ -75,4 +75,4 @@ export let testOtherBuildingsJson: any[] = [
           , 'production':     0
           , 'productionType': 'Copper'
      }
-]
+];

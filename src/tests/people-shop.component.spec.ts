@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OwnedPropertyComponent } from './owned-property.component';
+import { PeopleShopComponent } from '../app/people-shop/people-shop.component';
 
-describe('OwnedPropertyComponent', () => {
-     let component: OwnedPropertyComponent;
-     let fixture: ComponentFixture<OwnedPropertyComponent>;
+describe('PeopleShopComponent', () => {
+     let component: PeopleShopComponent;
+     let fixture: ComponentFixture<PeopleShopComponent>;
 
      beforeEach(async(() => {
           TestBed.configureTestingModule({
-               declarations: [ OwnedPropertyComponent ]
+               declarations: [ PeopleShopComponent ]
           })
           .compileComponents();
      }));
 
      beforeEach(() => {
-          fixture = TestBed.createComponent(OwnedPropertyComponent);
+          fixture = TestBed.createComponent(PeopleShopComponent);
           component = fixture.componentInstance;
           fixture.detectChanges();
      });

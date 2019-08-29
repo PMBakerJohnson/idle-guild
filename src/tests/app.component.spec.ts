@@ -1,11 +1,12 @@
 import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { SaveControlsComponent } from './save-controls/save-controls.component';
-import { ResourceDisplayComponent } from './resource-display/resource-display.component';
-import { PurchaseablesComponent } from './purchaseables/purchaseables.component';
-import { OwnedPropertyComponent } from './owned-property/owned-property.component';
-import { BuildingsShopComponent } from './buildings-shop/buildings-shop.component';
-import { PeopleShopComponent } from './people-shop/people-shop.component';
+import { AppComponent } from '../app/app.component';
+import { SaveControlsComponent } from '../app/save-controls/save-controls.component';
+import { ResourceDisplayComponent } from '../app/resource-display/resource-display.component';
+import { PurchaseablesComponent } from '../app/purchaseables/purchaseables.component';
+import { OwnedPropertyComponent } from '../app/owned-property/owned-property.component';
+import { BuildingsShopComponent } from '../app/buildings-shop/buildings-shop.component';
+import { PeopleShopComponent } from '../app/people-shop/people-shop.component';
+import { TestModule } from './test.module';
 
 describe('AppComponent', () => {
      beforeEach(async(() => {
@@ -19,6 +20,7 @@ describe('AppComponent', () => {
                     BuildingsShopComponent,
                     PeopleShopComponent
                ],
+               imports: [ TestModule ]
           }).compileComponents();
      }));
 

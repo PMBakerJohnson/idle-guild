@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TickerService } from './ticker.service';
+import { TickerService } from '../app/ticker.service';
 
 describe('TickerService', () => {
      let timerCallback: jasmine.Spy, service: TickerService;

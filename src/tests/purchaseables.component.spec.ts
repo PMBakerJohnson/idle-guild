@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PurchaseablesComponent } from './purchaseables.component';
-import { BuildingsShopComponent } from '../buildings-shop/buildings-shop.component';
-import { PeopleShopComponent } from '../people-shop/people-shop.component';
+import { PurchaseablesComponent } from '../app/purchaseables/purchaseables.component';
+import { BuildingsShopComponent } from '../app/buildings-shop/buildings-shop.component';
+import { PeopleShopComponent } from '../app/people-shop/people-shop.component';
+import { TestModule } from './test.module';
 
 describe('PurchaseablesComponent', () => {
      let component: PurchaseablesComponent;
@@ -10,6 +11,7 @@ describe('PurchaseablesComponent', () => {
 
      beforeEach(async(() => {
           TestBed.configureTestingModule({
+               imports: [ TestModule ],
                declarations: [
                     PurchaseablesComponent,
                     BuildingsShopComponent,

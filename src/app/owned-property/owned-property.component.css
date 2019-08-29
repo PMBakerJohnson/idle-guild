@@ -1,7 +1,8 @@
 .owned-building {
-     border-radius: 0 5px 0 5px;
+     border-bottom-left-radius: 0.5rem;
+     border-top-right-radius: 0.5rem;
      border-style: solid;
      border-width: 1px;
-     font-size: .6rem;
-     padding: .1rem;
+     font-size: 0.6rem;
+     padding: 0.1rem;
 }

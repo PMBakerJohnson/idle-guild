@@ -21,7 +21,7 @@ export class Resource {
           this.quantity = this.quantity + ((this.perTick * this.multiplier) * speedMultiplier);
      }
      // This figures how much should be earned with each tick.
-     public calculatePerTick() {
+     public calculatePerTick(): void {
           this.perTick = 0;
 
           if (this.earnings) {
@@ -44,7 +44,7 @@ export class Resource {
           return couldPurchase;
      }
      // Takes in an amount and adds it to the array of things that produce the resource as an IncomeItem.
-     public updateIncome(incomeSource: string, incomeAmount: number) {
+     public updateIncome(incomeSource: string, incomeAmount: number): void {
           let updatedIncome = false;
           for (const incomeItem of this.earnings) {
                if (incomeItem.name === incomeSource) {

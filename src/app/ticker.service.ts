@@ -9,7 +9,7 @@ export class TickerService {
      constructor() { }
 
      // WORTHLESS - This gets passed around a whole lot but doesn't actually accomplish anything. Just like yer mum. OHHHHHH
-     private numberOfDays = 1;
+     private numberOfDays: number = 1;
 
      // Putting the list of subscribed observers in the service's scope instead
           // of inside a function to be passed around in that scope.

@@ -9,18 +9,19 @@ import { Building } from '../objects/building';
 })
 export class OwnedPropertyComponent implements OnInit, OnDestroy {
 
-     constructor(private buildingsService: BuildingsService) { }
-
      public buildings: Building[];
 
      public subscriptionToBuildings = this.buildingsService.buildingsOwned$.subscribe(buildingsOwned => {
           this.buildings = buildingsOwned;
      });
 
-     public ngOnInit() {
+     constructor(private buildingsService: BuildingsService) { }
+
+
+     public ngOnInit(): void {
      }
 
-     public ngOnDestroy() {
+     public ngOnDestroy(): void {
           this.subscriptionToBuildings.unsubscribe();
      }
 

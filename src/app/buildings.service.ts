@@ -44,7 +44,7 @@ export class BuildingsService implements ABuildingService {
      };
 
      // SAVE/LOAD
-     private saveBuildingSubscriber = {
+     private saveBuildingSubscriber: Observer<{}> = {
           next: (saveDirections: string) => {
                if (saveDirections === 'SAVE') {
                     this.saveService.pushSaveData('availableBuildings', this.availableBuildings);
@@ -55,7 +55,9 @@ export class BuildingsService implements ABuildingService {
                          , this.saveService.pullSavedData('buildingsOwned')
                     );
                }
-          }
+          },
+          error: (_any) => { },
+          complete: () => { }
      };
 
      constructor(

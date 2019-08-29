@@ -2,19 +2,19 @@
 	min-height: 30rem;
 }
 
+.play-area > div {
+	border: solid;
+	border-color: black;
+	border-width: 0.1rem;
+	padding: 1rem;
+}
+
 .play-area > div:first-child {
 	border-bottom-left-radius: 2rem;
 }
 
 .play-area > div:last-child {
 	border-bottom-right-radius: 2rem;
-}
-
-.play-area > div {
-	border: solid;
-	border-color: black;
-	border-width: 0.1rem;
-	padding: 1rem;
 }
 
 .body-content {

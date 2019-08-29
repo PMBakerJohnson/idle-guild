@@ -29,7 +29,7 @@ export class TickerService {
           const self = this;
 
           // Return the subscriber function? Runs when subscribe() is invoked
-          return function(observer: any): { unsubscribe(): void } {
+          return function(observer: Observer<any>): { unsubscribe(): void } {
                // Collects the observer
                self.subscribedObservers.push(observer);
                // If this is the first subscription, this starts the wait() loop that runs the clock.
@@ -49,7 +49,7 @@ export class TickerService {
                          });
                }
                return {
-                    unsubscribe() {
+                    unsubscribe(): void {
                          // Remove from the observers array so it's no longer notified
                          self.subscribedObservers.splice(self.subscribedObservers.indexOf(observer), 1);
                     }

@@ -18,9 +18,11 @@ export class BuildingsService implements ABuildingService {
      public availableBuildings$: BehaviorSubject<Building[]>;
      public buildingsOwned$: BehaviorSubject<Building[]>;
 
-     // TODO: There need only be one list; purchased or not should be handled with an object property.
-     private daysSinceLastNewBuilding = 0;
-     private daysBeforeNewBuilding = 10;
+     // TODO: There need only be one list; purchased or nolt should be handled with an object property.
+     private daysSinceLastNewBuilding: number = 0;
+     private daysBeforeNewBuilding: number = 10;
+     private maximumBuildingsInQueue: number = 10;
+
      private availableBuildings: Building[] = [];
      private buildingsOwned: Building[] = [];
 
@@ -114,7 +116,7 @@ export class BuildingsService implements ABuildingService {
      }
      private generateNewBuilding(): void {
           this.availableBuildings.unshift(new Building());
-          if (this.availableBuildings.length > 10) {
+          if (this.availableBuildings.length > this.maximumBuildingsInQueue) {
                this.availableBuildings.pop();
           }
      }

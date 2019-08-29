@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseablesComponent implements OnInit {
 
+     public selectedTab: string;
+
      constructor() { }
 
-     selectedTab: string;
-
-     ngOnInit() {
+     public ngOnInit(): void {
           this.selectedTab = 'buildings';
      }
 

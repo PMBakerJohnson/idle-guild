@@ -7,6 +7,15 @@ export class HelperService {
 
      constructor() { }
 
+     public static getRandomInteger(max: number, min: number): number {
+          let randomInteger: number;
+
+          randomInteger = Math.floor(Math.random() * (max - min + 1) + min);
+
+          return randomInteger;
+     }
+
+
      public getRandomInteger(max: number, min: number): number {
           let randomInteger: number;
 
@@ -23,4 +32,5 @@ export class HelperService {
           }
           return object;
      }
+
 }

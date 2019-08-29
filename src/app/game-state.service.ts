@@ -6,15 +6,15 @@ import { Subject } from 'rxjs';
 })
 export class GameStateService {
 
-     constructor() {
-          this.loadData();
-     }
+     // OBSERVABLE(S) - Things that subscribe to this will receive a notification
+     public saveEvent$: Subject<string> = new Subject<string>();
 
      // INTERNAL VARIABLES
      private savedData: Array<SaveData> = [];
 
-     // OBSERVABLE(S) - Things that subscribe to this will receive a notification
-     public saveEvent$ = new Subject<string>();
+     constructor() {
+          this.loadData();
+     }
 
      // DATA MANAGEMENT
      /** Accepts a key and returns an array of generic JSON objects from the saved data */
@@ -38,7 +38,7 @@ export class GameStateService {
 
 
      // EVENT TRIGGERS - These get called to trigger everything else to happen.
-          // Usually they'll perform one simple action, like interacting with LocalStorage.
+     // Usually they'll perform one simple action, like interacting with LocalStorage.
      public saveData(): void {
           this.savedData = [];
           this.saveEvent$.next('SAVE');

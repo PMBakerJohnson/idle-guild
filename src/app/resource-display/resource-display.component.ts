@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '../resources.service';
-import { Resource } from '../objects/resource'
+import { Resource } from '../objects/resource';
+import { Subscription } from 'rxjs';
 
 @Component({
      selector: 'app-resource-display',
@@ -9,15 +10,16 @@ import { Resource } from '../objects/resource'
 })
 export class ResourceDisplayComponent implements OnInit {
 
+     public resources: Resource[];
+
+     public subscription: Subscription = this.resourcesService.resourcesSubject$.subscribe(resources => {
+          this.resources = resources;
+     });
+
      constructor(public resourcesService: ResourcesService) {
      }
 
-     ngOnInit() {
+     public ngOnInit(): void {
      }
 
-     public resources: Resource[];
-
-     public subscription = this.resourcesService.resourcesSubject$.subscribe(resources => {
-          this.resources = resources;
-     });
 }

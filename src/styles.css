@@ -1,15 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
 * {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .scrollable {
-  display: block;
-  overflow: auto;
+	display: block;
+	overflow: auto;
 }
 
 p {
-  margin: 0rem;
-  font-size: .75rem;
+	font-size: 0.75rem;
+	margin: 0;
 }

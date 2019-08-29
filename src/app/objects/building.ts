@@ -1,3 +1,5 @@
+import { HelperService } from '../helper.service';
+
 // import { SaveableObject } from './saveable-object';
 
 const BUILDINGNAMES: string[] = [
@@ -54,18 +56,24 @@ const BUILDINGNAMES: string[] = [
 ];
 
 export class Building {
-     type: string;
-     name: string;
-     cost: number;
-     purchaseWith: string;
-     production: number;
-     productionType: string;
-     constructor(type = 'Guild Hall'
-          , name = ''
-          , cost = Math.floor(Math.random() * (400 - 300 + 1) + 300)
-          , purchaseWith = 'gold'
-          , production = Math.floor(Math.random() * (10 - 1 + 1) + 1)
-          , productionType = 'gold') {
+     public static maximumCost: number = 400;
+     public static minimumCost: number = 300;
+     public static maxProduction: number = 10;
+     public static minProduction: number = 1;
+     public type: string;
+     public name: string;
+     public cost: number;
+     public purchaseWith: string;
+     public production: number;
+     public productionType: string;
+     constructor(type: string = 'Guild Hall'
+          , name: string = ''
+          , cost: number = HelperService.
+               getRandomInteger(Building.maximumCost, Building.minimumCost)
+          , purchaseWith: string = 'gold'
+          , production: number = HelperService.
+               getRandomInteger(Building.maxProduction, Building.minProduction)
+          , productionType: string = 'gold') {
           // Sets the name. If none specified, generates a new one.
           if (name !== '') {
                this.name = name;

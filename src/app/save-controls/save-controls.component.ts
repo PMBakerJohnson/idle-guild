@@ -10,7 +10,7 @@ export class SaveControlsComponent implements OnInit {
 
      constructor(private saveService: GameStateService) { }
 
-     public ngOnInit() {
+     public ngOnInit(): void {
      }
 
      // These are all just calls to the saveService's functions. This seems... wrong, somehow.

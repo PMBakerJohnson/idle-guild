@@ -60,12 +60,12 @@ export class Building {
      purchaseWith: string;
      production: number;
      productionType: string;
-     constructor(type = 'Guild Hall'
-          , name = ''
-          , cost = Math.floor(Math.random() * (400 - 300 + 1) + 300)
-          , purchaseWith = 'gold'
-          , production = Math.floor(Math.random() * (10 - 1 + 1) + 1)
-          , productionType = 'gold') {
+     constructor(type: string = 'Guild Hall'
+          , name: string = ''
+          , cost: number = Math.floor(Math.random() * (400 - 300 + 1) + 300)
+          , purchaseWith: string = 'gold'
+          , production: number = Math.floor(Math.random() * (10 - 1 + 1) + 1)
+          , productionType: string = 'gold') {
           // Sets the name. If none specified, generates a new one.
           if (name !== '') {
                this.name = name;

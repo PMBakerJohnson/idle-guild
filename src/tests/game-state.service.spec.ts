@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import * as testData from '../app/test-data';
+import * as resourceTestData from './mock-objects/resources';
 import { localStorage } from './mock-objects/local-storage';
 import { GameStateService } from '../app/game-state.service';
 
@@ -18,7 +18,7 @@ describe('GameStateService', () => {
           service.saveEvent$.subscribe(gameStateEvent => {
                switch (gameStateEvent) {
                     case 'SAVE':
-                         service.pushSaveData('testResources', testData.testResources);
+                         service.pushSaveData('testResources', resourceTestData.testResources);
                          break;
                     case 'LOAD':
                          service.pullSavedData('testResources');
@@ -38,7 +38,7 @@ describe('GameStateService', () => {
           service.saveData();
           expect(window.localStorage.setItem).toHaveBeenCalledWith('saveData',
                // This is just the format saveData ends up taking.
-               JSON.stringify( [{ key: 'testResources', data: testData.testResources }] ));
+               JSON.stringify( [{ key: 'testResources', data: resourceTestData.testResources }] ));
      });
 
      it('should load data', () => {

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BuildingsService } from '../buildings.service';
 import { Building } from '../objects/building';
+import { Subscription } from 'rxjs';
 
 @Component({
      selector: 'app-owned-property',
@@ -11,7 +12,7 @@ export class OwnedPropertyComponent implements OnInit, OnDestroy {
 
      public buildings: Building[];
 
-     public subscriptionToBuildings = this.buildingsService.buildingsOwned$.subscribe(buildingsOwned => {
+     public subscriptionToBuildings: Subscription = this.buildingsService.buildingsOwned$.subscribe(buildingsOwned => {
           this.buildings = buildingsOwned;
      });
 

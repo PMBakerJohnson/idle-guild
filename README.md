@@ -2,7 +2,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/81de043ced7c48b3a45956a384259378)](https://www.codacy.com/app/PMBakerJohnson/idle-guild?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PMBakerJohnson/idle-guild&amp;utm_campaign=Badge_Grade)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
 
-The basic conceit that I'm going for is that you, the player character, are an aspiring manager of an adventurer's guild in a D&D inspired fantasy setting. You'll have facilities created to support various adventurers and other support staff that you'll hire, and can expand as you see fit.
+The basic conceit that I'm going for is that you, the player character, are an aspiring manager of an adventurer's guild in a D&D inspired fantasy setting. You'll have facilities created to support various adventurers and other support staff that you'll hire, and can expand as you see fit. Now with 80%+ code coverage!
 
 ## Current features
 
@@ -10,7 +10,7 @@ You begin with a small initial sum of money, and then can purchase buildings to 
 
 ## Current effort
 
-Changing to test driven development!
+Interfaces! Interfaces EVERYWHERE and also some abstract classes
 
 ## Up next, in approximate order of importance
 

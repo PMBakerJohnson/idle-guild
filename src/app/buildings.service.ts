@@ -3,9 +3,9 @@ import { Building } from './objects/building';
 import { TickerService } from './ticker.service';
 import { BehaviorSubject, Observer } from 'rxjs';
 import { GameStateService } from './game-state.service';
-import { HelperService } from './helper.service';
 import { AResourceService } from 'src/app/services/abstracts/aresource-service';
 import { ABuildingService } from 'src/app/services/abstracts/abuilding-service';
+import { fromJSON } from './helper-functions';
 
 @Injectable({
      providedIn: 'root'
@@ -63,8 +63,7 @@ export class BuildingsService implements ABuildingService {
      constructor(
           private tickerService: TickerService,
           private resourcesService: AResourceService,
-          private saveService: GameStateService,
-          private helperService: HelperService) {
+          private saveService: GameStateService) {
 
           this.availableBuildings$ = new BehaviorSubject(this.availableBuildings);
           this.buildingsOwned$ = new BehaviorSubject(this.buildingsOwned);
@@ -102,10 +101,10 @@ export class BuildingsService implements ABuildingService {
      // Primarily for receiving from JSON; should just build an explicit cast into data objects.
      private updateBuildings(availableBuildings: any[] = [], buildingsOwned: any[] = []): void {
           for (const building of availableBuildings) {
-               this.availableBuildings.push(this.helperService.fromJSON(new Building(), building));
+               this.availableBuildings.push(fromJSON(new Building(), building));
           }
           for (const building of buildingsOwned) {
-               this.buildingsOwned.push(this.helperService.fromJSON(new Building(), building));
+               this.buildingsOwned.push(fromJSON(new Building(), building));
           }
           this.availableBuildings$.next(this.availableBuildings);
           this.buildingsOwned$.next(this.buildingsOwned);

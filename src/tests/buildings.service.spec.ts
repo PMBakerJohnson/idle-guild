@@ -8,7 +8,6 @@ import * as mockBuildings from './mock-objects/buildings';
 import { TickerService } from '../app/ticker.service';
 import { GameStateService } from '../app/game-state.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { HelperService } from 'src/app/helper.service';
 import * as testData from './mock-objects/buildings';
 import { TestModule } from './test.module';
 import { cloneDeep } from 'lodash';
@@ -119,7 +118,6 @@ describe('BuildingsService', () => {
           let tickerService: ExtendedTickerService;
           let resourcesService: MockResourcesService;
           let gameStateService: MockGameStateService;
-          let helperService: HelperService;
 
           let testableBuildingService: BuildingsService;
 
@@ -127,15 +125,13 @@ describe('BuildingsService', () => {
                tickerService = new ExtendedTickerService();
                resourcesService = new MockResourcesService();
                gameStateService = new MockGameStateService();
-               helperService = new HelperService;
 
                MockGameStateService.defaultData = cloneDeep(defaultData);
 
                testableBuildingService = new BuildingsService(
                     tickerService
                     , resourcesService
-                    , gameStateService
-                    , helperService);
+                    , gameStateService);
           });
 
           it('should call save method', () => {

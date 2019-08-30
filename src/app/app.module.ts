@@ -30,7 +30,7 @@ import { ABuildingService } from 'src/app/services/abstracts/abuilding-service';
      ],
      providers: [
           { provide: AResourceService, useClass: ResourcesService },
-          { provide: ABuildingService, useClass: BuildingsService },
+          { provide: ABuildingService, useClass: BuildingsService }
      ],
      bootstrap: [AppComponent]
 })

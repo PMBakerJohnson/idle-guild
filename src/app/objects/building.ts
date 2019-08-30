@@ -1,4 +1,4 @@
-import { HelperService } from '../helper.service';
+import { getRandomInteger } from '../helper-functions';
 
 // import { SaveableObject } from './saveable-object';
 
@@ -68,10 +68,10 @@ export class Building {
      public productionType: string;
      constructor(type: string = 'Guild Hall'
           , name: string = ''
-          , cost: number = HelperService.
+          , cost: number =
                getRandomInteger(Building.maximumCost, Building.minimumCost)
           , purchaseWith: string = 'gold'
-          , production: number = HelperService.
+          , production: number =
                getRandomInteger(Building.maxProduction, Building.minProduction)
           , productionType: string = 'gold') {
           // Sets the name. If none specified, generates a new one.

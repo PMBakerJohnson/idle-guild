@@ -6,7 +6,7 @@ The basic conceit that I'm going for is that you, the player character, are an a
 
 ## Things I've stopped doing
 
-I was trying to use interfaces and abstract classes to create a greater sense of abstraction and dependency injection but I wasn't having any luck with that, so I'm putting that off for now. I'll try to use them for things I do going forward.
+I was trying to use interfaces and abstract classes to create a greater sense of abstraction and dependency injection but I wasn't having any luck with that, so I'm putting that off for now. I'll try to use them for things I do going forward. Ugh. For additional clarity, I was just having issues doing testing on abstract features and all sorts of other hellish nonsense.
 
 ## Current features
 

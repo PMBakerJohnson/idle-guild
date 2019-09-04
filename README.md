@@ -4,13 +4,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 The basic conceit that I'm going for is that you, the player character, are an aspiring manager of an adventurer's guild in a D&D inspired fantasy setting. You'll have facilities created to support various adventurers and other support staff that you'll hire, and can expand as you see fit. Now with 80%+ code coverage!
 
+## Things I've stopped doing
+
+I was trying to use interfaces and abstract classes to create a greater sense of abstraction and dependency injection but I wasn't having any luck with that, so I'm putting that off for now. I'll try to use them for things I do going forward.
+
 ## Current features
 
 You begin with a small initial sum of money, and then can purchase buildings to earn (and increase) a passive income. Also some tabs! And now you can save the game!
 
 ## Current effort
 
-Interfaces! Interfaces EVERYWHERE and also some abstract classes
+Separate out the save features from the various data services so I can stop repeating myself there.
 
 ## Up next, in approximate order of importance
 
